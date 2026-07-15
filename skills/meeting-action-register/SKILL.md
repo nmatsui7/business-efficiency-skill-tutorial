@@ -2,15 +2,16 @@
 name: Meeting Action Register
 description: |
   Extracts action items, decisions, and owners from meeting notes and
-  produces a structured action register. Use when the user asks to
-  create an action register, extract action items, summarize meeting
-  notes, or build a follow-up list from a meeting. Accepts plain-text
-  meeting notes pasted directly or provided as a file path.
+  produces a structured action register. Use when the user provides
+  meeting notes, meeting minutes, or a transcript and wants a
+  structured list of action items, owners, deadlines, and decisions.
+  Accepts plain-text meeting notes pasted directly or provided as a
+  file path.
 ---
 
 ## When to use this skill
 
-Use this skill when the user provides meeting notes, meeting minutes, or a transcript and asks for a structured list of action items, owners, deadlines, and decisions. The skill works with informal notes, formal minutes, and partially structured documents.
+Use this skill when the user provides meeting notes, meeting minutes, or a transcript. The user may explicitly ask for action items, or they may simply share the notes expecting structured output. The skill works with informal notes, formal minutes, and partially structured documents.
 
 ## When not to use this skill
 
