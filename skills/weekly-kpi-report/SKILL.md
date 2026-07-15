@@ -33,6 +33,19 @@ Do not use this skill for:
 9. Flag unsupported conclusions or data quality issues.
 10. Present the report for human review before distribution.
 
+## Bundled resources
+
+Use the bundled files in this skill directory instead of recreating report logic or formats from scratch:
+
+- `scripts/check_report_files.sh` — Preflight check for Python availability and required source CSVs
+- `scripts/summarize_kpis.py` — Deterministic CSV combiner and variance summarizer
+- `references/metric-definitions.md` — Business definitions for source and derived metrics
+- `references/variance-rules.md` — How to interpret variance flags and materiality
+- `assets/weekly-report-template.md` — Management report structure to follow when drafting the final report
+- `examples/sales.csv` — Sample sales input file for testing the workflow
+- `examples/operations.csv` — Sample operations input file for testing the workflow
+- `examples/support.csv` — Sample support input file for testing the workflow
+
 ## Script usage
 
 ### check_report_files.sh (Preflight)
@@ -81,6 +94,7 @@ bash skills/weekly-kpi-report/scripts/check_report_files.sh \
 - If exit code is 0, read the summary file and the detailed CSV.
 - Apply metric definitions from `references/metric-definitions.md`.
 - Apply variance rules from `references/variance-rules.md`.
+- Use `assets/weekly-report-template.md` as the final report structure.
 - Draft an executive summary interpreting the numbers.
 - Flag any metrics where variance flags indicate material changes.
 

@@ -44,13 +44,21 @@ Do not use this skill for:
 - **Medium**: The request likely matches a category but has ambiguous elements.
 - **Low**: The request is unclear, mixed, or does not match known categories. Escalate.
 
-## Routing rules
+## Bundled resources
 
-Refer to `references/routing-rules.md` for the complete routing table.
+Use the bundled files in this skill directory to keep routing, urgency, and response language consistent:
 
-## Response language
+- `references/routing-rules.md` — Complete request type, urgency routing, and escalation table
+- `references/priority-definitions.md` — Definitions for Critical, High, Medium, and Low urgency
+- `references/approved-response-language.md` — Approved phrases, prohibited phrasing, and tone guidance
+- `examples/sample-requests.md` — Sample customer requests for testing classification and routing
+- `examples/sample-triage-output.md` — Expected triage output format and level of detail
 
-Refer to `references/approved-response-language.md` for approved phrasing and prohibited language.
+## Reference use
+
+- Apply `references/priority-definitions.md` before assigning urgency.
+- Apply `references/routing-rules.md` after classifying request type and urgency.
+- Apply `references/approved-response-language.md` before drafting any customer-facing response.
 
 ## What still requires human review
 

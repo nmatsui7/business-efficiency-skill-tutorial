@@ -32,6 +32,15 @@ Do not use this skill for:
 9. Produce a management summary showing totals, exceptions, and recommended actions.
 10. Avoid approving, rejecting, reimbursing, or changing expenses automatically.
 
+## Bundled resources
+
+Use the bundled files in this skill directory instead of rebuilding validation logic or report structure:
+
+- `scripts/validate_expenses.py` — Deterministic CSV validator for required fields, dates, amounts, thresholds, and duplicates
+- `references/expense-policy-rules.md` — Policy rules for categorizing exceptions and review flags
+- `assets/exceptions-report-template.md` — Management summary structure for exception reports
+- `examples/expense-report-example.csv` — Sample expense report for testing the validator workflow
+
 ## Script usage
 
 ### validate_expenses.py
@@ -53,14 +62,19 @@ Do not use this skill for:
 **Agent behavior after the script runs:**
 - If exit code is 0, confirm that the report passed validation and note that human review is still recommended for business context.
 - If exit code is 1, read the exceptions file, categorize each issue, and present a summary to the user.
+- Use `assets/exceptions-report-template.md` for the management summary format.
 - Always recommend corrective actions — never take corrective actions automatically.
 
 **Example command:**
 ```bash
 python3 skills/expense-report-validator/scripts/validate_expenses.py \
-  skills/expense-report-validator/examples/sample-expenses.csv \
+  skills/expense-report-validator/examples/expense-report-example.csv \
   --threshold 1000
 ```
+
+## Example files
+
+- `examples/expense-report-example.csv` — Sample CSV containing passing rows, threshold flags, missing fields, invalid dates, and duplicate transactions
 
 ## What still requires human review
 

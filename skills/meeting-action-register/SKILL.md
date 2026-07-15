@@ -40,16 +40,19 @@ Do not use this skill for:
 - Do NOT change the meaning of any action item. Preserve the original intent even if the wording is informal.
 - If the notes are too vague to extract a specific action, skip it and note that it was unclear.
 
-## Reference files
+## Bundled resources
 
-For detailed extraction guidance, consult these files:
+Use the bundled files in this skill directory to keep extraction rules and output format consistent:
 
 - `references/action-item-rules.md` — Expanded rules for owner identification, deadline interpretation, and priority assignment
 - `assets/action-register-template.md` — Blank template for output format
+- `examples/sample-meeting-notes.txt` — Short informal meeting notes for testing
+- `examples/sample-minutes.md` — Formal project meeting minutes for testing
+- `examples/sample-action-register.md` — Example completed register showing the expected output style
 
 ## Output format
 
-Present the results as:
+Present the results using `assets/action-register-template.md`:
 
 ### Action Items
 
@@ -80,3 +83,4 @@ This skill produces a structured document only. It does not send notifications, 
 
 - `examples/sample-meeting-notes.txt` — A short standup meeting with informal notes
 - `examples/sample-minutes.md` — Formal project meeting minutes with structured sections
+- `examples/sample-action-register.md` — Expected action register style
