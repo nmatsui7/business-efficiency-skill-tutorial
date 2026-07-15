@@ -1,0 +1,5 @@
+department,tasks_completed,tasks_pending,avg_completion_hours,satisfaction_score
+Support,342,28,4.2,87
+Engineering,89,15,12.5,91
+Sales,156,42,2.1,78
+Marketing,67,8,6.3,85

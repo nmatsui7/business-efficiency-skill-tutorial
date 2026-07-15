@@ -1,0 +1,2996 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="A practical tutorial for designing AI-agent skills that improve business efficiency using clear procedures, Python, shell scripts, testing, and governance." name="description"/>
+<title>The SKILL.md Pattern for Business Efficiency</title>
+<link href="styles.css" rel="stylesheet"/>
+<script defer="" src="script.js"></script>
+<noscript>
+<style>
+      .no-js { display: block; }
+      .js-only { display: none; }
+    </style>
+</noscript>
+</head>
+<body>
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar" id="progressBar" role="progressbar"></div>
+<nav aria-label="Main navigation" class="nav" role="navigation">
+<div class="nav-inner">
+<a class="nav-logo" href="#hero">SKILL.md Pattern</a>
+<button aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation menu" class="nav-toggle js-only" id="navToggle">☰</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#section-what-is-skill">What Is a Skill</a></li>
+<li><a href="#section-business-problem">Business Problem</a></li>
+<li><a href="#section-choose-process">Choose Process</a></li>
+<li><a href="#section-map-workflow">Map Workflow</a></li>
+<li><a href="#section-anatomy">Skill Folder</a></li>
+<li><a href="#section-activation">Activation</a></li>
+<li><a href="#section-meeting-example">Meeting Register</a></li>
+<li><a href="#section-expense-validator">Expense Validator</a></li>
+<li><a href="#section-kpi-generator">KPI Report</a></li>
+<li><a href="#section-customer-triage">Customer Triage</a></li>
+<li><a href="#section-choose-tools">Choose Tools</a></li>
+<li><a href="#section-safe-scripting">Safe Scripting</a></li>
+<li><a href="#section-governance">Governance</a></li>
+<li><a href="#section-testing">Testing</a></li>
+<li><a href="#section-debugging">Debugging</a></li>
+<li><a href="#section-measurement">Measurement</a></li>
+<li><a href="#section-deployment">Deployment</a></li>
+<li><a href="#section-template">Template</a></li>
+</ul>
+</div>
+</nav>
+<header class="hero section" id="hero">
+<div class="container">
+<h1>The SKILL.md Pattern for Business Efficiency</h1>
+<p class="hero-subtitle">Turn repeatable business procedures into reliable, measurable AI-agent workflows</p>
+<div class="hero-ctas">
+<a class="btn btn-primary" href="#section-what-is-skill">Build Your First Skill</a>
+<a class="btn btn-secondary" href="#section-meeting-example">View Practical Examples</a>
+</div>
+<div class="hero-learn-card">
+<h2>What you'll learn</h2>
+<ul>
+<li>What AI-agent skills are and how they differ from prompts</li>
+<li>How to identify and score business processes for automation</li>
+<li>How to map workflows and structure skill folders</li>
+<li>How to write activation descriptions that reliably trigger skills</li>
+<li>Practical examples: meetings, expenses, KPIs, customer triage</li>
+<li>How to measure, test, govern, and maintain skills over time</li>
+</ul>
+</div>
+<div class="workflow-diagram">
+<span class="workflow-step">Business problem</span>
+<span class="workflow-arrow">→</span>
+<span class="workflow-step">Process map</span>
+<span class="workflow-arrow">→</span>
+<span class="workflow-step">Skill instructions</span>
+<span class="workflow-arrow">→</span>
+<span class="workflow-step">Scripted validation</span>
+<span class="workflow-arrow">→</span>
+<span class="workflow-step">Human approval</span>
+<span class="workflow-arrow">→</span>
+<span class="workflow-step">Measured improvement</span>
+</div>
+</div>
+</header>
+<section class="section" id="section-toc">
+<div class="container">
+<h2><span class="section-number">0</span> Table of Contents</h2>
+<div class="toc-grid">
+<ol class="toc-list toc-col-1">
+<li><a href="#section-what-is-skill">What an AI-Agent Skill Is</a></li>
+<li><a href="#section-business-problem">Start with the Business Problem</a></li>
+<li><a href="#section-choose-process">Choose a Suitable Process</a></li>
+<li><a href="#section-map-workflow">Map the Existing Workflow</a></li>
+<li><a href="#section-anatomy">Anatomy of a Skill Folder</a></li>
+<li><a href="#section-activation">Writing the Skill Activation Description</a></li>
+<li><a href="#section-meeting-example">Meeting Action Register</a></li>
+<li><a href="#section-expense-validator">Expense Report Validator</a></li>
+<li><a href="#section-kpi-generator">Weekly KPI Report Generator</a></li>
+</ol>
+<ol class="toc-list toc-col-2" start="10">
+<li><a href="#section-customer-triage">Customer Request Triage</a></li>
+<li><a href="#section-choose-tools">Choosing Between Tools</a></li>
+<li><a href="#section-safe-scripting">Safe Scripting Standards</a></li>
+<li><a href="#section-governance">Business Controls and Governance</a></li>
+<li><a href="#section-testing">Testing a Skill</a></li>
+<li><a href="#section-debugging">Debugging Guide</a></li>
+<li><a href="#section-measurement">Measuring Business Impact</a></li>
+<li><a href="#section-deployment">Deployment and Maintenance</a></li>
+<li><a href="#section-template">Reusable Skill Template</a></li>
+</ol>
+</div>
+</div>
+</section>
+<section class="section" id="section-what-is-skill">
+<div class="container">
+<h2><span class="section-number">1</span> What an AI-Agent Skill Is</h2>
+<p>A skill is a documented operating procedure for an AI agent. Instead of writing a one-off prompt and hoping for the best, you create a structured file that tells the agent exactly what to do, when to do it, and how to handle edge cases. The agent interprets instructions and handles natural-language ambiguity, while code handles deterministic tasks like calculations, file operations, and data validation.</p>
+<p>Think of it this way: if you had to train a new employee every week on the same procedure, you would write it down. A skill is that written procedure, but designed for an AI agent to follow consistently.</p>
+<div class="comparison-table">
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>What It Is</th>
+<th>When to Use It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-time prompt</td>
+<td>A single message you send to an AI with no saved context. The result is not reproducible and depends on how well you phrase the request each time.</td>
+<td>Quick, non-critical tasks where consistency does not matter.</td>
+</tr>
+<tr>
+<td>Reusable template</td>
+<td>A prompt with placeholders that you fill in each time. Better than a bare prompt, but still relies on the AI understanding the intent correctly every run.</td>
+<td>Recurring tasks with a stable structure but low risk if the output varies slightly.</td>
+</tr>
+<tr>
+<td>Python/Shell script</td>
+<td>Code that performs a specific task deterministically. Produces identical output for identical input. No AI interpretation involved.</td>
+<td>Data transformations, calculations, file operations where precision and repeatability are essential.</td>
+</tr>
+<tr>
+<td>Agent skill</td>
+<td>A SKILL.md file combined with optional scripts. The AI reads the instructions and follows them, calling scripts for deterministic steps. Combines flexibility with reliability.</td>
+<td>Repeatable business processes that need both judgment (AI) and precision (code).</td>
+</tr>
+<tr>
+<td>Fully integrated workflow</td>
+<td>Skills chained together with approval gates, audit logging, monitoring dashboards, and automated triggers. Enterprise-grade automation.</td>
+<td>Critical business processes with compliance requirements, high volume, and organizational oversight.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout">
+<h3>Key Insight</h3>
+<p>The power of the skill pattern is the division of labor. The AI agent handles interpretation, natural language, exceptions that require judgment, and communication with the user. Scripts handle math, file I/O, data validation, and anything that must be exactly the same every time. Neither alone is as strong as both together.</p>
+</div>
+</div>
+</section>
+<section class="section" id="section-business-problem">
+<div class="container">
+<h2><span class="section-number">2</span> Start with the Business Problem</h2>
+<p>Every good skill begins with a concrete, painful business problem. Not "AI could help with reports" but "the weekly operations report takes Lisa two hours, has calculation errors in three of the last twelve weeks, and the CEO did not get it last Thursday because Lisa was out sick."</p>
+<div class="example-scenario">
+<h3>Realistic Example: Weekly Operations Report</h3>
+<p>Your team produces a weekly operations report every Monday morning. It pulls data from three spreadsheets, calculates six KPIs, formats a two-page summary, and emails it to the leadership team. The process currently takes about two hours and has several failure points.</p>
+</div>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Current Workflow</h3>
+<ul>
+<li>Manual data collection from three sources (30 min)</li>
+<li>Copy-paste into a master spreadsheet (15 min)</li>
+<li>Manual formula checks and corrections (20 min)</li>
+<li>Format the summary document (15 min)</li>
+<li>Proofread and fix inconsistencies (15 min)</li>
+<li>Email to distribution list (5 min)</li>
+<li>Handle "did not receive" follow-ups (20 min)</li>
+</ul>
+<p class="side-total">Total: ~2 hours, single point of failure</p>
+</div>
+<div class="side-card side-after">
+<h3>Improved Workflow with Skill</h3>
+<ul>
+<li>Skill auto-detects available data files (instant)</li>
+<li>Scripts validate and combine data (1 min)</li>
+<li>AI generates narrative summary (2 min)</li>
+<li>Human reviews and approves (5 min)</li>
+<li>Skill distributes and logs (1 min)</li>
+</ul>
+<p class="side-total">Total: ~9 minutes, documented and repeatable</p>
+</div>
+</div>
+<h3>Common Measurable Problems</h3>
+<ul class="problem-list">
+<li><strong>Repetitive work:</strong> The same procedure performed weekly or more often, consuming skilled employee time on mechanical steps.</li>
+<li><strong>Inconsistent formats:</strong> Reports and outputs vary depending on who produces them, leading to confusion and rework.</li>
+<li><strong>Calculation errors:</strong> Manual formulas break when rows are added, columns shift, or data formats change.</li>
+<li><strong>Missed exceptions:</strong> Edge cases slip through because the person performing the task does not remember every rule every time.</li>
+<li><strong>Single-person dependency:</strong> Only one person knows how to do the procedure, creating risk when they are away, busy, or leave the organization.</li>
+</ul>
+</div>
+</section>
+<section class="section" id="section-choose-process">
+<div class="container">
+<h2><span class="section-number">3</span> Choose a Suitable Process</h2>
+<p>Not every process is a good candidate for a skill. Use this scorecard to evaluate whether a process is worth automating. Rate each criterion from 1 (low) to 5 (high).</p>
+<div class="scorecard">
+<div class="scorecard-item">
+<label for="score-frequency">Frequency: How often does this process run?</label>
+<input class="score-slider" id="score-frequency" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-time">Time spent: How many minutes does a single run take?</label>
+<input class="score-slider" id="score-time" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-repetition">Repetition: How many steps are repeated verbatim each time?</label>
+<input class="score-slider" id="score-repetition" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-input">Input consistency: Are the inputs always in the same format?</label>
+<input class="score-slider" id="score-input" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-output">Output clarity: Is the desired output well-defined and unambiguous?</label>
+<input class="score-slider" id="score-output" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-error">Error impact: How costly are mistakes in this process?</label>
+<input class="score-slider" id="score-error" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-validation">Ease of validation: Can you easily check whether the output is correct?</label>
+<input class="score-slider" id="score-validation" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="scorecard-item">
+<label for="score-data">Sample data availability: Do you have past examples to test with?</label>
+<input class="score-slider" id="score-data" max="5" min="1" type="range" value="1"/>
+<span class="score-value">1</span>
+</div>
+<div class="score-display">
+<span id="totalScore">0</span> / 40
+        </div>
+<p class="score-interpretation" id="scoreInterpretation">Move the sliders to evaluate your process.</p>
+</div>
+<p class="scorecard-note">Higher scores indicate processes that are more suitable for skill automation. A score of 24 or above suggests a strong candidate. Below 16, consider whether the effort will deliver meaningful value.</p>
+</div>
+</section>
+<section class="section" id="section-map-workflow">
+<div class="container">
+<h2><span class="section-number">4</span> Map the Existing Workflow</h2>
+<p>Before writing a skill, document the current process in detail. Every workflow has eight elements. Understanding each one ensures your skill handles the full scope.</p>
+<div class="workflow-elements">
+<div class="workflow-element-card">
+<h3>1. Trigger</h3>
+<p>What starts the process? A scheduled time, an incoming email, a user command, or a file appearing in a folder.</p>
+</div>
+<div class="workflow-element-card">
+<h3>2. Inputs</h3>
+<p>What data or files does the process need? Where do they come from? What formats are expected?</p>
+</div>
+<div class="workflow-element-card">
+<h3>3. Decisions</h3>
+<p>What choices must be made during the process? Which require human judgment and which can be rule-based?</p>
+</div>
+<div class="workflow-element-card">
+<h3>4. Transformations</h3>
+<p>What calculations, reformatting, or data manipulations happen? Are they deterministic or variable?</p>
+</div>
+<div class="workflow-element-card">
+<h3>5. Exceptions</h3>
+<p>What can go wrong? Missing data, unexpected formats, outliers, permission failures, network errors.</p>
+</div>
+<div class="workflow-element-card">
+<h3>6. Outputs</h3>
+<p>What is the final deliverable? A file, an email, a database update, a notification? In what format?</p>
+</div>
+<div class="workflow-element-card">
+<h3>7. Approvals</h3>
+<p>Does someone need to review or approve the output before it is finalized or distributed?</p>
+</div>
+<div class="workflow-element-card">
+<h3>8. Measurements</h3>
+<p>How will you know the process is working? What metrics indicate success, speed, and accuracy?</p>
+</div>
+</div>
+<h3>Completed Example: Weekly Operations Report</h3>
+<div class="example-mapping">
+<div class="mapping-item">
+<strong>Trigger:</strong> Every Monday at 8:00 AM, or manually by the operations lead.
+        </div>
+<div class="mapping-item">
+<strong>Inputs:</strong> sales.csv, operations.csv, support.csv from the shared drive. Each has a known column structure.
+        </div>
+<div class="mapping-item">
+<strong>Decisions:</strong> Flag KPIs that vary more than 10% from prior week. AI decides narrative emphasis. Human approves final version.
+        </div>
+<div class="mapping-item">
+<strong>Transformations:</strong> Sum columns, calculate rates, compute week-over-week percentage changes, format into markdown.
+        </div>
+<div class="mapping-item">
+<strong>Exceptions:</strong> Missing file, empty CSV, column name changed, all values zero, numeric parsing failure.
+        </div>
+<div class="mapping-item">
+<strong>Outputs:</strong> weekly_kpi_detail.csv, weekly_kpi_summary.md, email to leadership distribution list.
+        </div>
+<div class="mapping-item">
+<strong>Approvals:</strong> Operations lead reviews summary and confirms before distribution.
+        </div>
+<div class="mapping-item">
+<strong>Measurements:</strong> Time from trigger to delivery, error rate per report, number of manual corrections needed.
+        </div>
+</div>
+</div>
+</section>
+<section class="section" id="section-anatomy">
+<div class="container">
+<h2><span class="section-number">5</span> Anatomy of a Skill Folder</h2>
+<p>A skill is stored as a folder with a clear, standard structure. Each file has a specific purpose. The agent reads the SKILL.md file first, then uses the other files as needed.</p>
+<div class="folder-tree">
+<pre><code>my-skill/
+├── SKILL.md              ← Main instructions the agent reads
+├── scripts/              ← Deterministic helper scripts
+│   ├── validate.py       ← Data validation logic
+│   └── check_files.sh    ← Pre-flight checks
+├── examples/             ← Sample inputs and outputs
+│   ├── sample_input.csv
+│   ├── sample_output.csv
+│   └── sample_output.md
+├── tests/                ← Automated test cases
+│   ├── test_validation.py
+│   └── test_edge_cases.py
+└── output/               ← Generated at runtime (gitignored)
+    ├── exceptions.csv
+    └── summary.md</code></pre>
+</div>
+<h3>File-by-File Explanation</h3>
+<div class="anatomy-explanations">
+<div class="anatomy-item">
+<h4>SKILL.md</h4>
+<p>The heart of the skill. Contains the activation description (tells the agent when to use this skill), step-by-step instructions for what the agent should do, rules about what the agent must not do, and references to any scripts or examples.</p>
+</div>
+<div class="anatomy-item">
+<h4>scripts/</h4>
+<p>Contains helper scripts that perform deterministic tasks. These are called by the agent during execution. Scripts handle calculations, file validation, data transformations, and anything that must be exactly the same every time.</p>
+</div>
+<div class="anatomy-item">
+<h4>examples/</h4>
+<p>Contains sample inputs and expected outputs. These serve two purposes: they help the user understand what the skill does, and they provide test data for verifying the skill works correctly.</p>
+</div>
+<div class="anatomy-item">
+<h4>tests/</h4>
+<p>Contains automated test cases that verify the skill produces correct results. Run these before deploying changes to confirm nothing is broken.</p>
+</div>
+<div class="anatomy-item">
+<h4>output/</h4>
+<p>A runtime directory where the skill writes its results. This folder is created during execution and should be listed in .gitignore so generated files are not committed to version control.</p>
+</div>
+</div>
+<div class="callout">
+<h3>Progressive Disclosure</h3>
+<p>You do not need to build everything at once. Start with just the SKILL.md file. Add scripts only when you identify a step that must be deterministic. Add tests only after the skill is working. Add examples as you accumulate real data. Grow the skill as your confidence and requirements grow.</p>
+</div>
+</div>
+</section>
+<section class="section" id="section-activation">
+<div class="container">
+<h2><span class="section-number">6</span> Writing the Skill Activation Description</h2>
+<p>The activation description is the YAML frontmatter at the top of your SKILL.md file. It is the single most important part of the skill because it determines when the agent will use it. If the description is weak, the skill will either never trigger or trigger at the wrong time.</p>
+<h3>YAML Frontmatter Example</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>SKILL.md frontmatter</span>
+<button class="copy-btn" data-copy="activation-frontmatter">Copy</button>
+</div>
+<pre><code id="activation-frontmatter">---
+name: Weekly KPI Report Generator
+description: |
+  Generates the weekly KPI summary report from department CSV files.
+  Use when the user asks to create, generate, build, or run the weekly
+  KPI report. Triggers on phrases like "run the weekly report",
+  "generate KPI summary", "build the operations report", or
+  "create the Monday report". Requires sales.csv, operations.csv,
+  and support.csv in the current working directory.
+---</code></pre>
+</div>
+<h3>The Formula</h3>
+<p>A strong activation description answers four questions:</p>
+<ol>
+<li><strong>What does it do?</strong> One sentence describing the primary output.</li>
+<li><strong>When should it be used?</strong> Specific trigger conditions, not vague ones.</li>
+<li><strong>What phrases might the user say?</strong> Include at least three variations.</li>
+<li><strong>What inputs are required?</strong> List the files or data that must exist.</li>
+</ol>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Weak Description</h3>
+<p><code>description: Helps with reports and data tasks.</code></p>
+<p>This is too vague. The agent cannot distinguish this skill from dozens of others. It will either never activate or activate when it should not.</p>
+</div>
+<div class="side-card side-after">
+<h3>Strong Description</h3>
+<p><code>description: Validates expense report CSVs for missing fields, invalid dates, amounts exceeding threshold, and duplicate transactions. Use when the user asks to check, validate, audit, or review an expense report. Requires a CSV file with date, description, amount, and category columns.</code></p>
+<p>Specific enough to trigger reliably. Clear enough to avoid false activation.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-meeting-example">
+<div class="container">
+<h2><span class="section-number">7</span> Meeting Action Register</h2>
+<p>This is a complete, <strong>no-code skill</strong> example. No Python scripts, no shell commands. The AI agent handles everything through instructions alone. This is a good starting point because it shows how far structured instructions can go.</p>
+<div class="skill-explorer">
+<div aria-label="Meeting Action Register skill explorer" class="skill-tabs" role="tablist">
+<button aria-selected="true" class="skill-tab" data-panel="meeting-overview" id="tab-overview" role="tab" tabindex="0">Overview</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-folder" id="tab-folder" role="tab" tabindex="-1">Folder</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-skillmd" id="tab-skillmd" role="tab" tabindex="-1">SKILL.md</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-references" id="tab-references" role="tab" tabindex="-1">References</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-assets" id="tab-assets" role="tab" tabindex="-1">Assets</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-examples" id="tab-examples" role="tab" tabindex="-1">Examples</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-workflow" id="tab-workflow" role="tab" tabindex="-1">Workflow</button>
+<button aria-selected="false" class="skill-tab" data-panel="meeting-downloads" id="tab-downloads" role="tab" tabindex="-1">Downloads</button>
+</div>
+<div aria-labelledby="tab-overview" class="skill-panel active" id="meeting-overview" role="tabpanel">
+<h3>Business Purpose</h3>
+<p>Extracts action items, decisions, and open questions from meeting notes and produces a structured action register.</p>
+<h3>Who Uses It</h3>
+<ul>
+<li><strong>Managers</strong> who run weekly team standups and need to track follow-ups</li>
+<li><strong>Project leads</strong> who capture decisions and next steps from project meetings</li>
+<li><strong>Business analysts</strong> who summarize stakeholder meetings for distribution</li>
+</ul>
+<h3>Input / Output</h3>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Input</h3>
+<p>Plain-text meeting notes, either pasted directly or provided as a file path.</p>
+</div>
+<div class="side-card side-after">
+<h3>Output</h3>
+<p>A structured action register: table of action items, list of decisions, and list of open questions.</p>
+</div>
+</div>
+<h3>Why a Skill Instead of a One-Time Prompt</h3>
+<ul>
+<li><strong>Consistent extraction rules</strong>—same criteria every time</li>
+<li><strong>No invented owners or deadlines</strong>—rules explicitly forbid it</li>
+<li><strong>Reliable output format</strong>—always structured the same way</li>
+<li><strong>Handles edge cases</strong>—vague notes, missing deadlines handled consistently</li>
+</ul>
+<div class="callout">
+<h3>No Code Required</h3>
+<p>This skill has no scripts, no Python, and no shell commands. The entire workflow is driven by clear instructions in the SKILL.md file.</p>
+</div>
+</div>
+<div aria-labelledby="tab-folder" class="skill-panel" hidden="" id="meeting-folder" role="tabpanel">
+<h3>Folder Structure</h3>
+<div class="skill-tree"><pre><code>skills/meeting-action-register/
+├── SKILL.md
+├── references/
+│   └── action-item-rules.md
+├── assets/
+│   └── action-register-template.md
+└── examples/
+    ├── sample-meeting-notes.txt
+    ├── sample-action-register.md
+    └── sample-minutes.md</code></pre></div>
+<h3>Purpose of Each Folder</h3>
+<ul>
+<li><strong>SKILL.md</strong>—Main instruction file the agent reads first.</li>
+<li><strong>references/</strong>—Domain-specific extraction rules for owners, deadlines, priorities.</li>
+<li><strong>assets/</strong>—Output template that standardizes the register format.</li>
+<li><strong>examples/</strong>—Sample inputs and expected outputs for testing.</li>
+</ul>
+</div>
+<div aria-labelledby="tab-skillmd" class="skill-panel" hidden="" id="meeting-skillmd" role="tabpanel">
+<h3>Rendered SKILL.md</h3>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Frontmatter (YAML)</h4></div>
+<div class="ref-card-body">
+<dl>
+<dt><strong>name:</strong> Meeting Action Register</dt>
+<dd>A descriptive name shown in skill listings and logs.</dd>
+<dt><strong>description:</strong> Extracts action items, decisions, and owners from meeting notes.</dt>
+<dd>Activation description telling the agent when to use this skill.</dd>
+</dl>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>When to Use / When Not to Use</h4></div>
+<div class="ref-card-body">
+<p><strong>Use when:</strong> User asks to extract action items, create an action register, summarize a meeting, or build a follow-up list.</p>
+<p><strong>Do not use when:</strong> Notes are too informal, user wants a narrative summary, or task involves editing existing items.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Instructions (5 Steps)</h4></div>
+<div class="ref-card-body">
+<ol>
+<li>Read the meeting notes provided by the user.</li>
+<li>Identify every action item mentioned in the notes.</li>
+<li>For each action item, extract: <strong>Owner</strong>, <strong>Action</strong>, <strong>Deadline</strong>, <strong>Priority</strong>.</li>
+<li>Identify any decisions made during the meeting.</li>
+<li>List any open questions needing follow-up.</li>
+</ol>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Rules (5 "Do NOT" Rules)</h4></div>
+<div class="ref-card-body">
+<ul>
+<li><strong>Do NOT invent owners.</strong> Write "Unassigned" if unclear.</li>
+<li><strong>Do NOT invent deadlines.</strong> Write "No deadline stated" if none mentioned.</li>
+<li><strong>Do NOT add tasks</strong> not mentioned in the notes.</li>
+<li><strong>Do NOT change the meaning</strong> of any action item.</li>
+<li><strong>If too vague</strong>, skip it and note it was unclear.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Output Format</h4></div>
+<div class="ref-card-body">
+<p><strong>Action Items</strong> — Table with columns: #, Owner, Action, Deadline, Priority.</p>
+<p><strong>Decisions</strong> — Numbered list of one-sentence summaries.</p>
+<p><strong>Open Questions</strong> — Numbered list of unresolved topics.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Approval Boundaries</h4></div>
+<div class="ref-card-body">
+<p>Agent drafts the register autonomously. Human approval required before finalizing or distributing.</p>
+</div>
+</div>
+<details>
+<summary>View raw SKILL.md source</summary>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>meeting-action-register/SKILL.md</span>
+<button class="copy-btn" data-copy="meeting-skill-raw">Copy</button>
+</div>
+<pre><code id="meeting-skill-raw">---
+name: Meeting Action Register
+description: |
+  Extracts action items, decisions, and owners from meeting notes and
+  produces a structured action register. Use when the user asks to
+  create an action register, extract action items, summarize meeting
+  notes, or build a follow-up list from a meeting. Accepts plain-text
+  meeting notes pasted directly or provided as a file path.
+---
+
+## Instructions
+
+1. Read the meeting notes provided by the user.
+2. Identify every action item mentioned in the notes.
+3. For each action item, extract:
+   - **Owner:** The person assigned to perform the task.
+   - **Action:** A clear, specific description of what needs to be done.
+   - **Deadline:** The due date or timeframe mentioned. If none is stated,
+     write "No deadline stated."
+   - **Priority:** Infer from context. Use "High" if it blocks other work
+     or has a near-term deadline. Use "Medium" for standard follow-ups.
+     Use "Low" for items with flexible timing.
+4. Identify any decisions made during the meeting.
+5. List any open questions or topics that need follow-up.
+
+## Rules
+
+- Do NOT invent owners. If a task has no clear owner, write "Unassigned."
+- Do NOT invent deadlines. If no date or timeframe is mentioned, write
+  "No deadline stated."
+- Do NOT add tasks that were not mentioned in the notes.
+- Do NOT change the meaning of any action item.
+- If the notes are too vague to extract a specific action, skip it and
+  note that it was unclear.
+
+## Output Format
+
+### Action Items
+
+| # | Owner | Action | Deadline | Priority |
+|---|-------|--------|----------|----------|
+| 1 | Name  | Task   | Date     | Level    |
+
+### Decisions
+
+1. Decision summary.
+
+### Open Questions
+
+1. Question or follow-up topic.</code></pre>
+</div>
+</details>
+</div>
+<div aria-labelledby="tab-references" class="skill-panel" hidden="" id="meeting-references" role="tabpanel">
+<h3>action-item-rules.md</h3>
+<div class="callout">
+<h3>Why a Separate Reference File</h3>
+<p>Rules for owner identification, deadline interpretation, and priority classification are <strong>domain knowledge</strong> that changes independently of the workflow. The agent consults this file each time it extracts an action item.</p>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Owner Identification Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li>Use the exact name as written or spoken in the notes.</li>
+<li>If a role is mentioned instead of a name, use the role.</li>
+<li>If "someone from the team" or "we need to," write "Unassigned."</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Deadline Interpretation Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li>Exact dates used as written.</li>
+<li>Relative deadlines written as stated.</li>
+<li>"ASAP" or "urgent" = High priority, "ASAP" as deadline.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Priority Classification Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li><strong>High:</strong> Blocks other work, near-term deadline, or explicitly urgent.</li>
+<li><strong>Medium:</strong> Standard follow-up with defined but not urgent deadline.</li>
+<li><strong>Low:</strong> Nice-to-have, flexible or no deadlines.</li>
+</ul>
+</div>
+</div>
+<details>
+<summary>View raw reference file</summary>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>references/action-item-rules.md</span>
+<button class="copy-btn" data-copy="meeting-ref-rules-raw">Copy</button>
+</div>
+<pre><code id="meeting-ref-rules-raw"># Action Item Extraction Rules
+
+## Owner Identification
+- Use the exact name as written or spoken in the notes.
+- If a role is mentioned instead of a name, use the role as the owner.
+- If the notes say "someone from the team" or "we need to," write "Unassigned."
+
+## Deadline Interpretation
+- Exact dates (e.g., "by July 15") are used as written.
+- Relative deadlines (e.g., "by end of week") are written as stated.
+- If "ASAP" or "urgent" is used, assign High priority and write "ASAP" as the deadline.
+
+## Priority Classification
+- High: Blocks other work, near-term deadline, or explicitly urgent.
+- Medium: Standard follow-up with defined but not urgent deadline.
+- Low: Nice-to-have items, flexible or no deadlines.</code></pre>
+</div>
+</details>
+</div>
+<div aria-labelledby="tab-assets" class="skill-panel" hidden="" id="meeting-assets" role="tabpanel">
+<h3>action-register-template.md</h3>
+<div class="callout">
+<h3>Purpose</h3>
+<p>Standardizes the output format so the register looks the same every time.</p>
+</div>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>assets/action-register-template.md</span>
+<button class="copy-btn" data-copy="meeting-asset-template">Copy</button>
+</div>
+<pre><code id="meeting-asset-template"># Action Register
+
+**Meeting:** [Meeting title or description]
+**Date:** [Date of meeting]
+**Prepared by:** Meeting Action Register Skill
+
+---
+
+## Action Items
+
+| # | Owner | Action | Deadline | Priority |
+|---|-------|--------|----------|----------|
+|   |       |        |          |          |
+
+## Decisions
+
+1. [Decision summary]
+
+## Open Questions
+
+1. [Question or follow-up topic]</code></pre>
+</div>
+</div>
+<div aria-labelledby="tab-examples" class="skill-panel" hidden="" id="meeting-examples" role="tabpanel">
+<h3>Example 1: Sample Meeting Notes (Input)</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>examples/sample-meeting-notes.txt</span>
+<button class="copy-btn" data-copy="meeting-ex-input">Copy</button>
+</div>
+<pre><code id="meeting-ex-input">Weekly Operations Standup - July 7, 2026
+Attendees: Sarah, James, Priya, Tom
+
+Sarah reported that the new vendor integration is on track for
+July 20 launch. James needs to finish the API testing by Wednesday.
+Priya will prepare the customer communication draft by Friday.
+
+Tom mentioned the support ticket volume is up 15% this month. James
+will investigate whether it is related to the recent release. No
+deadline was given for this.
+
+Decision: We will delay the billing system upgrade to August to
+avoid conflicting with the vendor integration launch.
+
+Open question: Should we hire a contractor for the documentation
+project? Sarah will check the budget.
+
+Action item for Sarah: Send the vendor integration status update to
+the executive team by end of day today.</code></pre>
+</div>
+<h3>Example 1: Completed Action Register (Output)</h3>
+<div class="output-example">
+<h4>Action Items</h4>
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>#</th><th>Owner</th><th>Action</th><th>Deadline</th><th>Priority</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>James</td><td>Finish API testing for the new vendor integration</td><td>Wednesday (July 9)</td><td>High</td></tr>
+<tr><td>2</td><td>Priya</td><td>Prepare customer communication draft for vendor integration</td><td>Friday (July 11)</td><td>Medium</td></tr>
+<tr><td>3</td><td>James</td><td>Investigate whether the 15% support ticket increase is related to the recent release</td><td>No deadline stated</td><td>Medium</td></tr>
+<tr><td>4</td><td>Sarah</td><td>Check the budget for hiring a contractor for the documentation project</td><td>No deadline stated</td><td>Low</td></tr>
+<tr><td>5</td><td>Sarah</td><td>Send vendor integration status update to the executive team</td><td>End of day (July 7)</td><td>High</td></tr>
+</tbody>
+</table>
+</div>
+<h4>Decisions</h4>
+<ol>
+<li>The billing system upgrade will be delayed to August to avoid conflicting with the vendor integration launch.</li>
+</ol>
+<h4>Open Questions</h4>
+<ol>
+<li>Should we hire a contractor for the documentation project? (Pending budget check by Sarah.)</li>
+</ol>
+</div>
+<h3>Example 2: Formal Meeting Minutes</h3>
+<p>The file <code>examples/sample-minutes.md</code> contains a more complex example with multiple decisions, conditional action items, and ambiguous ownership.</p>
+</div>
+<div aria-labelledby="tab-workflow" class="skill-panel" hidden="" id="meeting-workflow" role="tabpanel">
+<h3>How the Skill Executes</h3>
+<div class="skill-flow">
+<span class="skill-flow-step">User provides notes</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent reads notes</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent consults rules</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent extracts items</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent identifies decisions</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent populates template</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent presents for review</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Human confirms or corrects</span>
+</div>
+<h3>Step-by-Step</h3>
+<ol class="workflow-steps">
+<li>User provides meeting notes (pasted or as a file path).</li>
+<li>Agent reads the meeting notes in full.</li>
+<li>Agent consults <code>references/action-item-rules.md</code> for extraction rules.</li>
+<li>Agent identifies every action item with owner, action, deadline, and priority.</li>
+<li>Agent identifies decisions and open questions.</li>
+<li>Agent populates the <code>assets/action-register-template.md</code>.</li>
+<li>Agent presents the completed register for review.</li>
+<li>Human reviews and confirms or corrects priority assignments and ownership.</li>
+</ol>
+<h3>Approval Boundary</h3>
+<div class="approval-boundary-inline">
+<div class="boundary-zone-inline">
+<h4>AI Agent Handles</h4>
+<ul>
+<li>Read meeting notes</li>
+<li>Apply extraction rules</li>
+<li>Identify action items, decisions, open questions</li>
+<li>Populate template</li>
+<li>Draft the register</li>
+</ul>
+</div>
+<div class="boundary-gate-inline">Human<br/>Review</div>
+<div class="boundary-zone-inline">
+<h4>Human Confirms</h4>
+<ul>
+<li>Priority assignments are correct</li>
+<li>Owners are accurately identified</li>
+<li>Deadlines are interpreted correctly</li>
+<li>Register is finalized and distributed</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-downloads" class="skill-panel" hidden="" id="meeting-downloads" role="tabpanel">
+<h3>Skill Files</h3>
+<p>Download all files for the Meeting Action Register skill.</p>
+<ul class="download-list">
+<li><a download="" href="skills/meeting-action-register/SKILL.md">SKILL.md</a> <span class="file-label">— Main skill instructions</span></li>
+<li><a download="" href="skills/meeting-action-register/references/action-item-rules.md">references/action-item-rules.md</a> <span class="file-label">— Extraction rules</span></li>
+<li><a download="" href="skills/meeting-action-register/assets/action-register-template.md">assets/action-register-template.md</a> <span class="file-label">— Output template</span></li>
+<li><a download="" href="skills/meeting-action-register/examples/sample-meeting-notes.txt">examples/sample-meeting-notes.txt</a> <span class="file-label">— Sample input</span></li>
+<li><a download="" href="skills/meeting-action-register/examples/sample-action-register.md">examples/sample-action-register.md</a> <span class="file-label">— Expected output</span></li>
+<li><a download="" href="skills/meeting-action-register/examples/sample-minutes.md">examples/sample-minutes.md</a> <span class="file-label">— Complex example</span></li>
+</ul>
+<div class="callout">
+<h3>Getting Started</h3>
+<p>Copy the <code>skills/meeting-action-register/</code> folder into your agent's skills directory.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-expense-validator">
+<div class="container">
+<h2><span class="section-number">8</span> Expense Report Validator</h2>
+<p>This skill demonstrates the division of labor between AI and code. The Python script handles deterministic validation: it reads a CSV, checks required columns, validates date formats, verifies numeric amounts, detects duplicates, and flags amounts that exceed a threshold. The AI agent interprets the results, explains them to the user in plain language, and recommends next steps.</p>
+<div class="skill-explorer">
+<div aria-label="Expense Report Validator skill explorer" class="skill-tabs" role="tablist">
+<button aria-selected="true" class="skill-tab" data-panel="expense-overview" id="tab-expense-overview" role="tab" tabindex="0">Overview</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-folder" id="tab-expense-folder" role="tab" tabindex="-1">Folder</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-skillmd" id="tab-expense-skillmd" role="tab" tabindex="-1">SKILL.md</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-references" id="tab-expense-references" role="tab" tabindex="-1">References</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-assets" id="tab-expense-assets" role="tab" tabindex="-1">Assets</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-examples" id="tab-expense-examples" role="tab" tabindex="-1">Examples</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-scripts" id="tab-expense-scripts" role="tab" tabindex="-1">Scripts</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-workflow" id="tab-expense-workflow" role="tab" tabindex="-1">Workflow</button>
+<button aria-selected="false" class="skill-tab" data-panel="expense-downloads" id="tab-expense-downloads" role="tab" tabindex="-1">Downloads</button>
+</div>
+<div aria-labelledby="tab-expense-overview" class="skill-panel active" id="expense-overview" role="tabpanel">
+<h3>Business Purpose</h3>
+<p>Validates expense reports for data quality issues before management review. The skill identifies invalid dates, missing fields, amounts exceeding policy thresholds, and likely duplicate transactions, then produces a structured exceptions report with recommended actions.</p>
+<h3>Division of Labor</h3>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Python Script Handles</h3>
+<ul>
+<li>CSV parsing and structural validation</li>
+<li>Date format checking (YYYY-MM-DD, MM/DD/YYYY, MM-DD-YYYY)</li>
+<li>Amount parsing and threshold comparison</li>
+<li>Duplicate detection (same date + description + amount)</li>
+<li>Empty field detection</li>
+<li>Writing exceptions CSV and summary output</li>
+</ul>
+</div>
+<div class="side-card side-after">
+<h3>AI Agent Handles</h3>
+<ul>
+<li>Interpreting script results in plain language</li>
+<li>Categorizing issues as confirmed errors vs. review flags</li>
+<li>Explaining why each exception matters</li>
+<li>Recommending corrective actions</li>
+<li>Applying policy rules from the reference file</li>
+<li>Presenting a management summary</li>
+</ul>
+</div>
+</div>
+<h3>Who Uses It</h3>
+<ul>
+<li><strong>Finance teams</strong> who process bulk expense submissions and need consistent validation</li>
+<li><strong>Managers</strong> approving expenses who want a pre-screened exceptions list</li>
+<li><strong>Accountants</strong> performing audits who need structured data quality reports</li>
+</ul>
+<h3>Input / Output</h3>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Input</h3>
+<p>A CSV expense report with columns: <code>date</code>, <code>description</code>, <code>amount</code>, and <code>category</code>. The file can contain any number of rows.</p>
+</div>
+<div class="side-card side-after">
+<h3>Output</h3>
+<p>An exceptions CSV listing all rows with issues, a human-readable terminal summary, and an AI-generated interpretation of each issue with recommended actions.</p>
+</div>
+</div>
+<h3>Why a Skill Instead of a One-Time Prompt</h3>
+<ul>
+<li><strong>Consistent rules</strong>—every run applies the same date formats, thresholds, and duplicate detection logic</li>
+<li><strong>Proper CSV parsing</strong>—the Python script handles encoding, quoting, and edge cases that an LLM might mishandle</li>
+<li><strong>Threshold checking</strong>—configurable dollar thresholds applied uniformly across all rows</li>
+<li><strong>Duplicate detection</strong>—deterministic matching that does not miss or hallucinate duplicates</li>
+<li><strong>Audit trail</strong>—the exceptions CSV provides a machine-readable record of every flagged issue</li>
+</ul>
+</div>
+<div aria-labelledby="tab-expense-folder" class="skill-panel" hidden="" id="expense-folder" role="tabpanel">
+<h3>Folder Structure</h3>
+<div class="skill-tree"><pre><code>skills/expense-report-validator/
+├── SKILL.md
+├── scripts/
+│   └── validate_expenses.py
+├── references/
+│   └── expense-policy-rules.md
+├── assets/
+│   └── exceptions-report-template.md
+└── examples/
+    ├── sample-expenses.csv
+    └── sample-exceptions.csv</code></pre></div>
+<h3>Purpose of Each Folder</h3>
+<ul>
+<li><strong>SKILL.md</strong>—The main instruction file. The agent reads this first to understand when to activate, what steps to follow, and what rules to enforce.</li>
+<li><strong>scripts/</strong>—Contains the Python validation script that performs deterministic checks on the CSV. Called by the agent during execution.</li>
+<li><strong>references/</strong>—Policy rules for thresholds, allowed categories, and exception handling procedures. Kept separate because these rules change independently of the validation logic.</li>
+<li><strong>assets/</strong>—The exceptions report template that standardizes how results are presented to the approver.</li>
+<li><strong>examples/</strong>—Sample input CSV and expected exceptions output. Used for demonstration, testing, and onboarding.</li>
+</ul>
+<div class="callout">
+<h3>Why Scripts Are Essential Here</h3>
+<p>Unlike the Meeting Action Register skill, this skill requires a script because CSV parsing, numeric validation, and duplicate detection are deterministic tasks that must produce identical results every time. The AI adds value by <em>interpreting</em> those results, not by performing the checks themselves.</p>
+</div>
+</div>
+<div aria-labelledby="tab-expense-skillmd" class="skill-panel" hidden="" id="expense-skillmd" role="tabpanel">
+<h3>Rendered SKILL.md</h3>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Frontmatter (YAML)</h4></div>
+<div class="ref-card-body">
+<dl>
+<dt><strong>name:</strong> Expense Report Validator</dt>
+<dd>A descriptive name shown in skill listings and logs.</dd>
+<dt><strong>description:</strong> Validates expense report CSVs for missing fields, invalid dates, amounts exceeding threshold, and duplicate transactions.</dt>
+<dd>This is the activation description. It tells the agent <em>when</em> to use this skill: when the user asks to check, validate, audit, or review an expense report.</dd>
+</dl>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>When to Use / When Not to Use</h4></div>
+<div class="ref-card-body">
+<p><strong>Use this skill when:</strong> The user provides a CSV file containing expense report data and asks to validate, check, audit, or review it for data quality issues.</p>
+<p><strong>Do not use this skill when:</strong></p>
+<ul>
+<li>Approving or rejecting expenses (the agent should never approve, reject, reimburse, or change expenses automatically)</li>
+<li>Reimbursing employees</li>
+<li>Calculating tax deductions</li>
+<li>Creating expense reports from scratch</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Instructions (10 Steps)</h4></div>
+<div class="ref-card-body">
+<ol>
+<li>Validate that the input is a CSV file with the expected columns: date, description, amount, category.</li>
+<li>Preserve the source file. Never modify, overwrite, or delete the original CSV.</li>
+<li>Create a separate output directory for validation results.</li>
+<li>Run the Python validator script with the appropriate threshold.</li>
+<li>Check the exit code. A non-zero exit code means exceptions were found; this is expected behavior, not an error.</li>
+<li>Inspect the generated exceptions file.</li>
+<li>Apply the policy rules in <code>references/expense-policy-rules.md</code>.</li>
+<li>Separate confirmed data errors (invalid dates, missing fields) from review flags (threshold exceeded, possible duplicates).</li>
+<li>Produce a management summary showing totals, exceptions, and recommended actions.</li>
+<li>Avoid approving, rejecting, reimbursing, or changing expenses automatically.</li>
+</ol>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li><strong>Never modify the source file.</strong> The original CSV must remain untouched.</li>
+<li><strong>Never approve or reject expenses.</strong> Only produce evidence and flags.</li>
+<li><strong>Never submit expenses to external systems.</strong> All actions are local.</li>
+<li><strong>Always recommend corrective actions</strong> but never take them automatically.</li>
+<li><strong>Always preserve the audit trail.</strong> The exceptions CSV is the permanent record.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Output Format</h4></div>
+<div class="ref-card-body">
+<p><strong>Terminal summary:</strong> File name, threshold, total rows, valid rows, exception count, and status.</p>
+<p><strong>Exceptions CSV:</strong> All original columns plus an <code>issue</code> column describing every problem found in that row.</p>
+<p><strong>AI interpretation:</strong> Plain-language explanation of each issue with recommended corrective actions.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Approval Boundaries</h4></div>
+<div class="ref-card-body">
+<p>This skill produces evidence and flags only. It must not:</p>
+<ul>
+<li>Approve expenses for reimbursement</li>
+<li>Reject expenses</li>
+<li>Modify expense data</li>
+<li>Submit expenses to any external system</li>
+</ul>
+<p>All approval and rejection decisions require explicit human action.</p>
+</div>
+</div>
+<details>
+<summary>View raw SKILL.md source</summary>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>expense-report-validator/SKILL.md</span>
+<button class="copy-btn" data-copy="expense-skill-raw">Copy</button>
+</div>
+<pre><code id="expense-skill-raw">---
+name: Expense Report Validator
+description: |
+  Validates expense report CSVs for missing fields, invalid dates,
+  amounts exceeding threshold, and duplicate transactions. Use when
+  the user asks to check, validate, audit, or review an expense report.
+  Requires a CSV file with date, description, amount, and category columns.
+---
+
+## When to use this skill
+
+Use this skill when the user provides a CSV file containing expense
+report data and asks to validate, check, audit, or review it for data
+quality issues. The skill checks for structural problems, format errors,
+and policy violations.
+
+## When not to use this skill
+
+Do not use this skill for:
+- Approving or rejecting expenses
+- Reimbursing employees
+- Calculating tax deductions
+- Creating expense reports from scratch
+
+## Instructions
+
+1. Validate that the input is a CSV file with the expected columns:
+   date, description, amount, category.
+2. Preserve the source file. Never modify, overwrite, or delete
+   the original CSV.
+3. Create a separate output directory for validation results.
+4. Run the Python validator script with the appropriate threshold.
+5. Check the exit code. A non-zero exit code means exceptions were
+   found; this is expected behavior, not an error.
+6. Inspect the generated exceptions file.
+7. Apply the policy rules in references/expense-policy-rules.md.
+8. Separate confirmed data errors (invalid dates, missing fields)
+   from review flags (threshold exceeded, possible duplicates).
+9. Produce a management summary showing totals, exceptions, and
+   recommended actions.
+10. Avoid approving, rejecting, reimbursing, or changing expenses
+    automatically.
+
+## Rules
+
+- Never modify the source file.
+- Never approve or reject expenses.
+- Never submit expenses to external systems.
+- Always recommend corrective actions but never take them automatically.
+- Always preserve the audit trail.
+
+## Approval boundaries
+
+This skill produces evidence and flags only. It must not:
+- Approve expenses for reimbursement
+- Reject expenses
+- Modify expense data
+- Submit expenses to any external system
+
+All approval and rejection decisions require explicit human action.</code></pre>
+</div>
+</details>
+</div>
+<div aria-labelledby="tab-expense-references" class="skill-panel" hidden="" id="expense-references" role="tabpanel">
+<h3>expense-policy-rules.md</h3>
+<div class="callout">
+<h3>Why a Separate Reference File</h3>
+<p>Policy thresholds, allowed categories, and exception handling procedures change independently of the validation logic. When your organization adjusts the dollar threshold or adds a new expense category, you update the reference file without touching the SKILL.md instructions or the Python script. The agent consults this file each time it interprets validation results.</p>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Required Columns</h4></div>
+<div class="ref-card-body">
+<p>Every expense report CSV must contain these columns:</p>
+<ul>
+<li><code>date</code> — The date the expense was incurred</li>
+<li><code>description</code> — A brief description of the expense</li>
+<li><code>amount</code> — The dollar amount (numeric)</li>
+<li><code>category</code> — The expense category</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Accepted Date Formats</h4></div>
+<div class="ref-card-body">
+<ul>
+<li><code>YYYY-MM-DD</code> (preferred)</li>
+<li><code>MM/DD/YYYY</code></li>
+<li><code>MM-DD-YYYY</code></li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Threshold Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li>Default threshold: <strong>$1,000.00</strong></li>
+<li>Expenses at or above the threshold require manager approval before reimbursement.</li>
+<li>Thresholds may be adjusted per department or per expense type.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Duplicate Detection Rules</h4></div>
+<div class="ref-card-body">
+<p>A transaction is flagged as a likely duplicate if two or more rows share the same:</p>
+<ul>
+<li>Date</li>
+<li>Description</li>
+<li>Amount</li>
+</ul>
+<p><strong>Common false positives:</strong> Recurring subscriptions, split reimbursements, legitimate repeated expenses (daily parking fees).</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Category and Description Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li>Every expense must have a non-empty category. Empty categories indicate a data entry error.</li>
+<li>Every expense must have a non-empty description specific enough to understand the business purpose.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Exception Handling Procedures</h4></div>
+<div class="ref-card-body">
+<ol>
+<li>The script identifies data quality issues.</li>
+<li>The agent categorizes issues as "confirmed error" or "review flag."</li>
+<li>Confirmed errors (invalid dates, missing fields) should be returned to the submitter.</li>
+<li>Review flags (threshold exceeded, possible duplicates) require manager judgment.</li>
+<li>The agent presents the summary but does not make approval decisions.</li>
+</ol>
+</div>
+</div>
+<details>
+<summary>View raw reference file</summary>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>references/expense-policy-rules.md</span>
+<button class="copy-btn" data-copy="expense-ref-rules-raw">Copy</button>
+</div>
+<pre><code id="expense-ref-rules-raw"># Expense Policy Rules
+
+## Required columns
+- `date` - The date the expense was incurred
+- `description` - A brief description of the expense
+- `amount` - The dollar amount (numeric)
+- `category` - The expense category
+
+## Accepted date formats
+- `YYYY-MM-DD` (preferred)
+- `MM/DD/YYYY`
+- `MM-DD-YYYY`
+
+## Threshold rules
+- Default threshold: $1,000.00
+- Expenses at or above the threshold require manager approval
+  before reimbursement.
+- Thresholds may be adjusted per department or per expense type.
+
+## Duplicate detection
+A transaction is flagged as a likely duplicate if two or more rows
+share the same: Date, Description, Amount.
+
+Common false positives: Recurring subscriptions, split reimbursements,
+legitimate repeated expenses (daily parking fees).
+
+## Category rules
+- Every expense must have a non-empty category.
+- Empty categories indicate a data entry error.
+
+## Description rules
+- Every expense must have a non-empty description.
+- Descriptions should be specific enough to understand the business purpose.
+
+## Review process
+1. The script identifies data quality issues.
+2. The agent categorizes issues as "confirmed error" or "review flag."
+3. Confirmed errors should be returned to the submitter.
+4. Review flags require manager judgment.
+5. The agent presents the summary but does not make approval decisions.</code></pre>
+</div>
+</details>
+</div>
+<div aria-labelledby="tab-expense-assets" class="skill-panel" hidden="" id="expense-assets" role="tabpanel">
+<h3>exceptions-report-template.md</h3>
+<div class="callout">
+<h3>Purpose</h3>
+<p>This template standardizes how exceptions are presented to the approver. By filling in the same template every time, the agent produces a report that looks and reads the same way regardless of who ran the skill or which expense report was validated.</p>
+</div>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>assets/exceptions-report-template.md</span>
+<button class="copy-btn" data-copy="expense-asset-template">Copy</button>
+</div>
+<pre><code id="expense-asset-template"># Exceptions Report Template
+
+## Expense Validation Exceptions
+
+**Source file:** `{filename}`
+**Threshold:** ${threshold}
+**Total rows:** {total}
+**Exceptions:** {count}
+
+## Exception Summary
+
+| # | Date | Description | Amount | Category | Issue |
+|---|------|-------------|--------|----------|-------|
+| 1 |      |             |        |          |       |
+
+## Recommended Actions
+
+1.</code></pre>
+</div>
+<h3>How It Is Used</h3>
+<p>The agent fills in the source file name, threshold, row counts, and the exception table with data from the script's output. The recommended actions section is populated by the AI agent after it interprets each issue in plain language.</p>
+</div>
+<div aria-labelledby="tab-expense-examples" class="skill-panel" hidden="" id="expense-examples" role="tabpanel">
+<h3>Example 1: Sample Expense Report (Input)</h3>
+<p>The file <code>examples/sample-expenses.csv</code> contains 24 rows with intentional data quality issues. Below are 8 representative rows highlighting the problems:</p>
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>date</th><th>description</th><th>amount</th><th>category</th></tr>
+</thead>
+<tbody>
+<tr><td>2026-07-01</td><td>Client dinner</td><td>85.50</td><td>Meals</td></tr>
+<tr><td>2026-07-02</td><td>Flight to Chicago</td><td>425.00</td><td>Travel</td></tr>
+<tr><td class="issue-cell">2026/07/06</td><td>Conference registration</td><td class="issue-cell">1,500.00</td><td>Events</td></tr>
+<tr><td>2026-07-07</td><td>Printer paper</td><td>18.50</td><td>Supplies</td></tr>
+<tr><td>2026-07-07</td><td>Printer paper</td><td>18.50</td><td>Supplies</td></tr>
+<tr><td class="issue-cell">07-08-2026</td><td>Client gift</td><td>75.00</td><td>Miscellaneous</td></tr>
+<tr><td>2026-07-14</td><td>Internet bill</td><td>79.99</td><td class="issue-cell"></td></tr>
+<tr><td class="issue-cell">not-a-date</td><td>Broken entry</td><td class="issue-cell">abc</td><td>Meals</td></tr>
+</tbody>
+</table>
+</div>
+<p>The full file contains 24 input rows. Intentional issues include: an invalid date format, an amount exceeding the $1,000 threshold, a duplicate row, an unrecognized date format, an empty category, and a completely broken row.</p>
+<h3>Example 1: Exceptions Output</h3>
+<p>The script writes <code>sample-exceptions.csv</code> with 8 exception rows. Each row includes an <code>issue</code> column describing the problem:</p>
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>date</th><th>description</th><th>amount</th><th>category</th><th>issue</th></tr>
+</thead>
+<tbody>
+<tr><td>2026/07/06</td><td>Conference registration</td><td>1,500.00</td><td>Events</td><td class="issue-cell">Amount $1,500.00 exceeds threshold $1,000.00</td></tr>
+<tr><td>2026-07-07</td><td>Printer paper</td><td>18.50</td><td>Supplies</td><td class="issue-cell">Likely duplicate transaction</td></tr>
+<tr><td>07-08-2026</td><td>Client gift</td><td>75.00</td><td>Miscellaneous</td><td class="issue-cell">Invalid date: '07-08-2026'</td></tr>
+<tr><td>2026-07-14</td><td>Internet bill</td><td>79.99</td><td class="issue-cell"></td><td class="issue-cell">Empty category</td></tr>
+<tr><td>not-a-date</td><td>Broken entry</td><td>abc</td><td>Meals</td><td class="issue-cell">Invalid date: 'not-a-date'; Invalid amount: 'abc'</td></tr>
+<tr><td>2026-07-19</td><td>Client dinner</td><td>85.50</td><td>Meals</td><td class="issue-cell">Likely duplicate transaction</td></tr>
+<tr><td>2026-07-20</td><td>Conference hotel</td><td>890.00</td><td>Travel</td><td class="issue-cell">Amount $890.00 exceeds threshold $1,000.00</td></tr>
+<tr><td>2026-07-21</td><td>Team dinner</td><td>520.00</td><td>Meals</td><td class="issue-cell">Amount $520.00 exceeds threshold $1,000.00</td></tr>
+</tbody>
+</table>
+</div>
+<p>After the script runs, the AI agent reads this file and translates each issue into plain language with recommended actions.</p>
+</div>
+<div aria-labelledby="tab-expense-scripts" class="skill-panel" hidden="" id="expense-scripts" role="tabpanel">
+<h3>Division of Labor</h3>
+<p>The script handles deterministic checks. The AI interprets results. Neither is sufficient alone.</p>
+<h3>Script Purpose</h3>
+<p><code>validate_expenses.py</code> reads a CSV file, validates every row against policy rules, and produces an exceptions file. It uses only the Python standard library (csv, argparse, datetime). The original source file is never modified.</p>
+<h3>Key Functions</h3>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Function Reference</h4></div>
+<div class="ref-card-body">
+<dl>
+<dt><strong>load_csv(filepath)</strong></dt>
+<dd>Opens a CSV file with UTF-8 encoding and returns headers and rows as a list of dictionaries.</dd>
+<dt><strong>check_required_columns(headers)</strong></dt>
+<dd>Compares the CSV headers against the required list (date, description, amount, category) and returns any that are missing.</dd>
+<dt><strong>parse_date(value)</strong></dt>
+<dd>Tries each known date format in order. Returns success on the first match.</dd>
+<dt><strong>parse_amount(value)</strong></dt>
+<dd>Strips dollar signs and commas, then attempts float conversion.</dd>
+<dt><strong>detect_duplicates(rows, headers)</strong></dt>
+<dd>Builds a key from date + description + amount (lowercased). Flags any row whose key has been seen before.</dd>
+<dt><strong>validate_rows(rows, headers, threshold)</strong></dt>
+<dd>The main validation loop. Checks each row for all issues and sorts into valid or exception lists.</dd>
+<dt><strong>write_exceptions(filepath, exceptions)</strong></dt>
+<dd>Writes exception rows to a new CSV with all original columns plus the "issue" column.</dd>
+<dt><strong>print_summary(...)</strong></dt>
+<dd>Prints a formatted summary to the terminal showing counts, status, and file location.</dd>
+</dl>
+</div>
+</div>
+<h3>Running the Script</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>Terminal</span>
+<button class="copy-btn" data-copy="expense-terminal-run">Copy</button>
+</div>
+<pre><code id="expense-terminal-run">python3 skills/expense-report-validator/scripts/validate_expenses.py \
+  skills/expense-report-validator/examples/sample-expenses.csv \
+  --threshold 1000</code></pre>
+</div>
+<h3>Example Terminal Output</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>Output</span>
+</div>
+<pre><code>=======================================================
+  EXPENSE REPORT VALIDATION SUMMARY
+=======================================================
+  File:              sample-expenses.csv
+  Threshold:         $1,000.00
+  Total rows:        24
+  Valid rows:        16
+  Exceptions:        8
+  Exception file:    sample-expenses_exceptions.csv
+=======================================================
+  Status: 8 issue(s) found. Review exception file.</code></pre>
+</div>
+<div class="callout">
+<h3>AI Interprets, Code Detects</h3>
+<p>The script detects that eight rows have issues. It does not explain why they matter or what to do about them. That is where the AI agent adds value: it reads the exception file, explains each issue in plain language, and recommends corrective actions.</p>
+</div>
+</div>
+<div aria-labelledby="tab-expense-workflow" class="skill-panel" hidden="" id="expense-workflow" role="tabpanel">
+<h3>How the Skill Executes</h3>
+<p>The agent follows these ten steps in order. Steps 1–2 are the trigger and input. Steps 3–6 are the deterministic validation phase. Steps 7–9 are the AI interpretation phase. Step 10 is the approval gate.</p>
+<div class="skill-flow">
+<span class="skill-flow-step">User provides CSV</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent runs script</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Script checks columns</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Script validates rows</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Script detects duplicates</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Script writes exceptions</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent reads exceptions</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent interprets issues</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent recommends actions</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Human reviews and acts</span>
+</div>
+<h3>Step-by-Step</h3>
+<ol class="workflow-steps">
+<li>User provides the path to an expense CSV file.</li>
+<li>Agent runs <code>validate_expenses.py</code> with the configured threshold.</li>
+<li>Script checks that required columns (date, description, amount, category) exist in the CSV.</li>
+<li>Script validates dates, amounts, categories, and descriptions for each row.</li>
+<li>Script detects likely duplicate transactions by matching date + description + amount.</li>
+<li>Script writes the exceptions CSV and prints a summary to the terminal.</li>
+<li>Agent reads the exceptions CSV file produced by the script.</li>
+<li>Agent interprets each issue in plain language, referencing <code>references/expense-policy-rules.md</code>.</li>
+<li>Agent recommends corrective actions for each exception.</li>
+<li>Human reviews the recommendations and takes action.</li>
+</ol>
+<h3>Approval Boundary</h3>
+<p>The script produces evidence and flags. The AI interprets them. A human makes the final decision.</p>
+<div class="approval-boundary-inline">
+<div class="boundary-zone-inline">
+<h4>AI Agent Handles</h4>
+<ul>
+<li>Run the validation script</li>
+<li>Read the exceptions CSV</li>
+<li>Interpret each issue in plain language</li>
+<li>Categorize issues as errors vs. review flags</li>
+<li>Recommend corrective actions</li>
+<li>Present the management summary</li>
+</ul>
+</div>
+<div class="boundary-gate-inline">Human<br/>Review</div>
+<div class="boundary-zone-inline">
+<h4>Human Reviews</h4>
+<ul>
+<li>Confirms exceptions are valid</li>
+<li>Approves or rejects each flagged expense</li>
+<li>Escalates policy questions to management</li>
+<li>Decides whether duplicates are intentional</li>
+<li>Authorizes threshold exceptions</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-expense-downloads" class="skill-panel" hidden="" id="expense-downloads" role="tabpanel">
+<h3>Skill Files</h3>
+<p>Download all files for the Expense Report Validator skill.</p>
+<ul class="download-list">
+<li><a download="" href="skills/expense-report-validator/SKILL.md">SKILL.md</a> <span class="file-label">— Main skill instructions and activation description</span></li>
+<li><a download="" href="skills/expense-report-validator/scripts/validate_expenses.py">scripts/validate_expenses.py</a> <span class="file-label">— Python validation script for CSV expense reports</span></li>
+<li><a download="" href="skills/expense-report-validator/references/expense-policy-rules.md">references/expense-policy-rules.md</a> <span class="file-label">— Policy thresholds, categories, and exception handling procedures</span></li>
+<li><a download="" href="skills/expense-report-validator/assets/exceptions-report-template.md">assets/exceptions-report-template.md</a> <span class="file-label">— Output template for structuring the exceptions report</span></li>
+<li><a download="" href="skills/expense-report-validator/examples/sample-expenses.csv">examples/sample-expenses.csv</a> <span class="file-label">— Sample input with 24 rows and intentional data quality issues</span></li>
+<li><a download="" href="skills/expense-report-validator/examples/sample-exceptions.csv">examples/sample-exceptions.csv</a> <span class="file-label">— Expected output: 8 exception rows with issue descriptions</span></li>
+</ul>
+<div class="callout">
+<h3>Getting Started</h3>
+<p>Copy the <code>skills/expense-report-validator/</code> folder into your agent's skills directory. The agent will automatically detect the skill and activate it when you ask to validate, check, or audit an expense report CSV.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-kpi-generator">
+<div class="container">
+<h2><span class="section-number">9</span> Weekly KPI Report Generator</h2>
+<p>This skill uses two scripts: a shell script for pre-flight checks and a Python script for data processing. The shell script verifies that required files exist and that Python is available. The Python script combines multiple CSV files, calculates totals, flags variances, and produces both a detailed CSV and a markdown summary. The AI agent generates the narrative and recommendations.</p>
+<div class="skill-explorer">
+<div aria-label="Weekly KPI Report skill explorer" class="skill-tabs" role="tablist">
+<button aria-selected="true" class="skill-tab" data-panel="kpi-overview" id="tab-kpi-overview" role="tab" tabindex="0">Overview</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-folder" id="tab-kpi-folder" role="tab" tabindex="-1">Folder</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-skillmd" id="tab-kpi-skillmd" role="tab" tabindex="-1">SKILL.md</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-references" id="tab-kpi-references" role="tab" tabindex="-1">References</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-assets" id="tab-kpi-assets" role="tab" tabindex="-1">Assets</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-examples" id="tab-kpi-examples" role="tab" tabindex="-1">Examples</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-scripts" id="tab-kpi-scripts" role="tab" tabindex="-1">Scripts</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-workflow" id="tab-kpi-workflow" role="tab" tabindex="-1">Workflow</button>
+<button aria-selected="false" class="skill-tab" data-panel="kpi-downloads" id="tab-kpi-downloads" role="tab" tabindex="-1">Downloads</button>
+</div>
+<div aria-labelledby="tab-kpi-overview" class="skill-panel active" id="kpi-overview" role="tabpanel">
+<h3>Business Purpose</h3>
+<p>Combines multiple department CSVs into a unified weekly KPI summary. Instead of manually copying numbers between spreadsheets and writing status emails, the skill automates data collection, calculation, variance detection, and narrative generation.</p>
+<h3>Division of Labor</h3>
+<div class="skill-flow">
+<span class="skill-flow-step">Shell checks files exist</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Python processes data</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">AI generates narrative</span>
+</div>
+<h3>Who Uses It</h3>
+<ul>
+<li><strong>Operations managers</strong> who track team performance and ticket resolution</li>
+<li><strong>Department heads</strong> who review their division's weekly metrics</li>
+<li><strong>Executives</strong> who consume the narrative summary for leadership updates</li>
+</ul>
+<h3>Input / Output</h3>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Input</h3>
+<p>Three CSV files: <code>sales.csv</code> (revenue, orders, AOV), <code>operations.csv</code> (tickets created/resolved, resolution time), <code>support.csv</code> (FCR rate, CSAT, escalations).</p>
+</div>
+<div class="side-card side-after">
+<h3>Output</h3>
+<p>Unified <code>kpi_summary.csv</code> with week-over-week deltas, <code>kpi_summary.md</code> with formatted tables, and an AI-generated narrative with flagged variances and recommendations.</p>
+</div>
+</div>
+<h3>Why a Skill Instead of a One-Time Prompt</h3>
+<ul>
+<li><strong>Consistent calculations</strong>—same formulas every week, no manual errors</li>
+<li><strong>Variance detection</strong>—automated threshold-based flagging (RED / AMBER / GREEN)</li>
+<li><strong>Reliable format</strong>—output structure is identical every run</li>
+<li><strong>Contextual narrative</strong>—AI reads metric definitions to explain why a number matters</li>
+</ul>
+</div>
+<div aria-labelledby="tab-kpi-folder" class="skill-panel" hidden="" id="kpi-folder" role="tabpanel">
+<h3>Folder Structure</h3>
+<div class="skill-tree"><pre><code>skills/weekly-kpi-report/
+├── SKILL.md
+├── scripts/
+│   ├── check_report_files.sh
+│   └── summarize_kpis.py
+├── references/
+│   ├── metric-definitions.md
+│   └── variance-rules.md
+├── assets/
+│   └── weekly-report-template.md
+└── examples/
+    ├── sales.csv
+    ├── operations.csv
+    └── support.csv</code></pre></div>
+<h3>Purpose of Each Folder</h3>
+<ul>
+<li><strong>SKILL.md</strong>—The main instruction file. The agent reads this first to understand the workflow and rules.</li>
+<li><strong>scripts/</strong>—Executable preflight and processing scripts. The shell script checks the environment; the Python script processes data.</li>
+<li><strong>references/</strong>—Domain knowledge the AI consults when generating the narrative: what each metric means and what thresholds trigger flags.</li>
+<li><strong>assets/</strong>—The report template that standardizes output formatting.</li>
+<li><strong>examples/</strong>—Sample data files for testing and onboarding.</li>
+</ul>
+</div>
+<div aria-labelledby="tab-kpi-skillmd" class="skill-panel" hidden="" id="kpi-skillmd" role="tabpanel">
+<h3>Rendered SKILL.md</h3>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Frontmatter (YAML)</h4></div>
+<div class="ref-card-body">
+<dl>
+<dt><strong>name:</strong> Weekly KPI Report Generator</dt>
+<dd>A descriptive name shown in skill listings and logs.</dd>
+<dt><strong>description:</strong> Generates a unified weekly KPI summary from department CSV files.</dt>
+<dd>This is the activation description. It tells the agent <em>when</em> to use this skill: when the user asks to generate a weekly KPI report, combine department metrics, or create a performance summary.</dd>
+</dl>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>When to Use / When Not to Use</h4></div>
+<div class="ref-card-body">
+<p><strong>Use this skill when:</strong> The weekly reporting cycle is triggered, all three department CSVs are available, and stakeholders need a unified performance view.</p>
+<p><strong>Do not use this skill when:</strong> The user asks ad-hoc single-metric questions, needs monthly/quarterly reporting, or the CSV files are missing or malformed.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Instructions (8 Steps)</h4></div>
+<div class="ref-card-body">
+<ol>
+<li>Run <code>check_report_files.sh</code> to verify environment and inputs.</li>
+<li>Run <code>summarize_kpis.py</code> with the input directory and output path.</li>
+<li>Read the generated <code>kpi_summary.csv</code> and <code>kpi_summary.md</code>.</li>
+<li>Consult <code>metric-definitions.md</code> for context on each KPI.</li>
+<li>Apply <code>variance-rules.md</code> thresholds to interpret flags.</li>
+<li>Use <code>weekly-report-template.md</code> to structure the narrative.</li>
+<li>Generate narrative summary with recommendations.</li>
+<li>Present to human for review and approval.</li>
+</ol>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Rules</h4></div>
+<div class="ref-card-body">
+<ul>
+<li>Never fabricate data—only report what the CSVs contain.</li>
+<li>Always check for RED flags before generating the narrative.</li>
+<li>Include the date range in every output heading.</li>
+<li>Do not modify source CSV files.</li>
+<li>Flag any missing or empty CSV files to the user immediately.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Approval Boundaries</h4></div>
+<div class="ref-card-body">
+<p>The agent runs scripts, reads outputs, generates the narrative, flags issues, and recommends actions. A human confirms data accuracy, approves the narrative, and decides on action items.</p>
+</div>
+</div>
+<details>
+<summary>View raw SKILL.md source</summary>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>weekly-kpi-report/SKILL.md</span>
+<button class="copy-btn" data-copy="kpi-skill-raw">Copy</button>
+</div>
+<pre><code id="kpi-skill-raw">---
+name: Weekly KPI Report Generator
+description: |
+  Generates a unified weekly KPI summary from department CSV files.
+  Combines sales, operations, and support metrics into a single
+  report with variance flags and AI-generated narrative.
+---
+
+## When to Use
+- Weekly reporting cycle is triggered
+- All three department CSVs are available
+- Stakeholders need a unified performance view
+
+## When Not to Use
+- Ad-hoc single-metric questions
+- Monthly or quarterly reporting
+- CSV files are missing or malformed
+
+## Instructions
+
+1. Run check_report_files.sh to verify environment and inputs
+2. Run summarize_kpis.py with the input directory and output path
+3. Read the generated kpi_summary.csv and kpi_summary.md
+4. Consult metric-definitions.md for context on each KPI
+5. Apply variance-rules.md thresholds to interpret flags
+6. Use weekly-report-template.md to structure the narrative
+7. Generate narrative summary with recommendations
+8. Present to human for review and approval
+
+## Rules
+- Never fabricate data
+- Always check for RED flags before generating the narrative
+- Include the date range in every output heading
+- Do not modify source CSV files
+- Flag any missing or empty CSV files to the user immediately
+
+## Approval Boundaries
+- AI Agent Handles: Running scripts, reading outputs, generating
+  narrative, flagging issues, recommending actions
+- Human Reviews: Confirms data accuracy, approves narrative,
+  decides on action items</code></pre>
+</div>
+</details>
+</div>
+<div aria-labelledby="tab-kpi-references" class="skill-panel" hidden="" id="kpi-references" role="tabpanel">
+<h3>Reference Files</h3>
+<div class="callout">
+<h3>Why Two Reference Files</h3>
+<p>Metric definitions are domain knowledge that rarely change. Variance rules are operational thresholds that may be tuned quarterly. Keeping them independent allows updates to either without affecting the other.</p>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>metric-definitions.md</h4></div>
+<div class="ref-card-body">
+<p>Explains what each KPI measures, how it is calculated, and what "good" looks like. The AI consults this file when writing the narrative.</p>
+<h4>Sales Metrics</h4>
+<ul>
+<li><strong>Total Revenue:</strong> Sum of all order values. Good: steady 2-5% week-over-week growth.</li>
+<li><strong>Total Orders:</strong> Count of individual orders. Good: correlates with revenue.</li>
+<li><strong>Average Order Value:</strong> Revenue / Orders. Good: increasing trend indicates better upsell.</li>
+<li><strong>Orders per Day:</strong> Daily order velocity. Good: consistent across weekdays.</li>
+</ul>
+<h4>Operations Metrics</h4>
+<ul>
+<li><strong>Tickets Created:</strong> Volume of new tickets. Good: stable or declining.</li>
+<li><strong>Tickets Resolved:</strong> Volume of tickets closed. Good: should meet or exceed created.</li>
+<li><strong>Avg Resolution Time:</strong> Mean hours to resolve. Good: under 4 hours, trending down.</li>
+</ul>
+<h4>Support Metrics</h4>
+<ul>
+<li><strong>FCR Rate:</strong> First-contact resolution %. Good: above 70%.</li>
+<li><strong>CSAT Score:</strong> Customer satisfaction (0-100). Good: above 80.</li>
+<li><strong>Escalations:</strong> Tickets requiring escalation. Good: low and declining.</li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>variance-rules.md</h4></div>
+<div class="ref-card-body">
+<p>Defines week-over-week thresholds that trigger visual flags in the report.</p>
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Change (WoW)</th><th>Flag</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>&gt; 10% decrease</td><td class="issue-cell">RED</td><td>Requires immediate attention</td></tr>
+<tr><td>&gt; 10% increase</td><td style="color: var(--color-success); font-weight: 600;">GREEN</td><td>Exceptionally positive change</td></tr>
+<tr><td>5–10% change</td><td style="color: var(--color-warning); font-weight: 600;">AMBER</td><td>Worth monitoring</td></tr>
+<tr><td>&lt; 5% change</td><td>—</td><td>Within normal range</td></tr>
+</tbody>
+</table>
+</div>
+<h4>Special Cases</h4>
+<ul>
+<li><strong>Zero-to-nonzero:</strong> Previous week was 0, current is non-zero: GREEN for positive metrics, RED for negative.</li>
+<li><strong>All-zero:</strong> Both weeks are 0: display "N/A" with no flag.</li>
+<li><strong>Missing data:</strong> Previous week unavailable: display current value with "..." for change.</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-kpi-assets" class="skill-panel" hidden="" id="kpi-assets" role="tabpanel">
+<h3>weekly-report-template.md</h3>
+<div class="callout">
+<h3>Purpose</h3>
+<p>The template ensures every weekly report follows the same structure. This makes it easy for stakeholders to find specific information and for the AI to fill in values consistently.</p>
+</div>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>assets/weekly-report-template.md</span>
+<button class="copy-btn" data-copy="kpi-asset-template">Copy</button>
+</div>
+<pre><code id="kpi-asset-template"># Weekly KPI Report - Week of [DATE_RANGE]
+
+## Executive Summary
+[2-3 sentence overview. Highlight significant changes and items requiring leadership attention.]
+
+## Sales Performance
+
+| Metric | Current Week | Previous Week | Change | Flag |
+|--------|-------------|---------------|--------|------|
+| Total Revenue | $[value] | $[value] | [%] | [flag] |
+| Total Orders | [value] | [value] | [%] | [flag] |
+| Average Order Value | $[value] | $[value] | [%] | [flag] |
+| Orders per Day | [value] | [value] | [%] | [flag] |
+
+[1-2 sentences of narrative analysis.]
+
+## Operations Performance
+
+| Metric | Current Week | Previous Week | Change | Flag |
+|--------|-------------|---------------|--------|------|
+| Tickets Created | [value] | [value] | [%] | [flag] |
+| Tickets Resolved | [value] | [value] | [%] | [flag] |
+| Avg Resolution Time | [value]h | [value]h | [%] | [flag] |
+
+[1-2 sentences of narrative analysis.]
+
+## Support Performance
+
+| Metric | Current Week | Previous Week | Change | Flag |
+|--------|-------------|---------------|--------|------|
+| First Contact Resolution | [%] | [%] | [%] | [flag] |
+| CSAT Score | [value] | [value] | [%] | [flag] |
+| Escalations | [value] | [value] | [%] | [flag] |
+
+[1-2 sentences of narrative analysis.]
+
+## Flagged Items
+[List all RED and AMBER metrics with recommended actions.]
+
+## Recommendations
+[2-3 actionable recommendations prioritizing RED-flagged items.]</code></pre>
+</div>
+</div>
+<div aria-labelledby="tab-kpi-examples" class="skill-panel" hidden="" id="kpi-examples" role="tabpanel">
+<h3>Example Data</h3>
+<p>Each file contains 7 days of data. The tables below show 5 representative rows.</p>
+<div class="ref-card">
+<div class="ref-card-header"><h4>examples/sales.csv</h4></div>
+<div class="ref-card-body">
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Date</th><th>Revenue</th><th>Orders</th><th>Avg_Order_Value</th></tr>
+</thead>
+<tbody>
+<tr><td>2026-07-06</td><td>12,450.00</td><td>83</td><td>150.00</td></tr>
+<tr><td>2026-07-07</td><td>14,230.50</td><td>94</td><td>151.39</td></tr>
+<tr><td>2026-07-08</td><td>11,875.25</td><td>79</td><td>150.32</td></tr>
+<tr><td>2026-07-09</td><td>15,620.00</td><td>102</td><td>153.14</td></tr>
+<tr><td>2026-07-10</td><td>13,890.75</td><td>91</td><td>152.65</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>examples/operations.csv</h4></div>
+<div class="ref-card-body">
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Date</th><th>Tickets_Created</th><th>Tickets_Resolved</th><th>Avg_Resolution_Hours</th></tr>
+</thead>
+<tbody>
+<tr><td>2026-07-06</td><td>45</td><td>42</td><td>3.2</td></tr>
+<tr><td>2026-07-07</td><td>52</td><td>48</td><td>3.8</td></tr>
+<tr><td>2026-07-08</td><td>38</td><td>40</td><td>2.9</td></tr>
+<tr><td>2026-07-09</td><td>61</td><td>55</td><td>4.1</td></tr>
+<tr><td>2026-07-10</td><td>47</td><td>47</td><td>3.5</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>examples/support.csv</h4></div>
+<div class="ref-card-body">
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Date</th><th>FCR_Rate</th><th>CSAT_Score</th><th>Escalations</th></tr>
+</thead>
+<tbody>
+<tr><td>2026-07-06</td><td>74.5</td><td>86</td><td>3</td></tr>
+<tr><td>2026-07-07</td><td>71.2</td><td>83</td><td>5</td></tr>
+<tr><td>2026-07-08</td><td>78.0</td><td>88</td><td>2</td></tr>
+<tr><td>2026-07-09</td><td>68.9</td><td>81</td><td>6</td></tr>
+<tr><td>2026-07-10</td><td>75.3</td><td>85</td><td>3</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-kpi-scripts" class="skill-panel" hidden="" id="kpi-scripts" role="tabpanel">
+<h3>Two Scripts, One Pipeline</h3>
+<p>The shell script handles environment validation. The Python script handles data processing. The AI handles narrative generation. Each layer does what it does best.</p>
+<div class="ref-card">
+<div class="ref-card-header"><h4>check_report_files.sh — Preflight Script</h4></div>
+<div class="ref-card-body">
+<p>Verifies the environment before processing begins. Catches missing dependencies and files early.</p>
+<h4>Key Functions</h4>
+<ul>
+<li><strong>check_python</strong>—confirms <code>python3</code> is available</li>
+<li><strong>check_files</strong>—verifies all 3 CSV files exist</li>
+<li><strong>check_output_dir</strong>—creates the output directory if missing</li>
+</ul>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>Terminal</span>
+<button class="copy-btn" data-copy="kpi-shell-run">Copy</button>
+</div>
+<pre><code id="kpi-shell-run">bash skills/weekly-kpi-report/scripts/check_report_files.sh</code></pre>
+</div>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>summarize_kpis.py — Data Processing</h4></div>
+<div class="ref-card-body">
+<p>Reads the three department CSVs, calculates totals and averages, detects week-over-week variances, applies threshold flags, and outputs structured summary files.</p>
+<h4>Key Functions</h4>
+<ul>
+<li><strong>read_csv</strong>—loads a department CSV with date parsing</li>
+<li><strong>calculate_metrics</strong>—computes totals, averages, and derived KPIs</li>
+<li><strong>detect_variances</strong>—compares current vs. previous week, applies thresholds</li>
+<li><strong>write_summary</strong>—outputs <code>kpi_summary.csv</code> and <code>kpi_summary.md</code></li>
+</ul>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>Terminal</span>
+<button class="copy-btn" data-copy="kpi-python-run">Copy</button>
+</div>
+<pre><code id="kpi-python-run">python3 skills/weekly-kpi-report/scripts/summarize_kpis.py \
+  skills/weekly-kpi-report/examples/ \
+  --output output/</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-kpi-workflow" class="skill-panel" hidden="" id="kpi-workflow" role="tabpanel">
+<h3>How the Skill Executes</h3>
+<p>The agent follows these twelve steps. Steps 1–3 are the trigger and preflight. Steps 4–8 are data processing. Steps 9–11 are narrative generation. Step 12 is the approval gate.</p>
+<div class="skill-flow">
+<span class="skill-flow-step">User triggers report</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Shell checks environment</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Python reads CSVs</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Python calculates metrics</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Python detects variances</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Python outputs summaries</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent reads outputs</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent consults metric definitions</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent applies variance rules</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent generates narrative</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Human reviews</span>
+</div>
+<h3>Step-by-Step</h3>
+<ol class="workflow-steps">
+<li>User triggers the weekly report (e.g., "Generate this week's KPI report").</li>
+<li>Agent runs <code>check_report_files.sh</code>.</li>
+<li>Script verifies Python is available and all 3 input CSV files exist.</li>
+<li>Agent runs <code>summarize_kpis.py</code> with input directory and output path.</li>
+<li>Script reads <code>sales.csv</code>, <code>operations.csv</code>, <code>support.csv</code>.</li>
+<li>Script calculates totals, averages, and week-over-week changes.</li>
+<li>Script flags variances against variance-rules thresholds (RED / AMBER / GREEN).</li>
+<li>Script outputs <code>kpi_summary.csv</code> and <code>kpi_summary.md</code>.</li>
+<li>Agent reads the summary outputs and consults <code>metric-definitions.md</code>.</li>
+<li>Agent applies <code>variance-rules.md</code> to interpret flagged items.</li>
+<li>Agent generates narrative summary with recommendations using the report template.</li>
+<li>Human reviews and approves the report.</li>
+</ol>
+<h3>Approval Boundary</h3>
+<div class="approval-boundary-inline">
+<div class="boundary-zone-inline">
+<h4>AI Agent Handles</h4>
+<ul>
+<li>Run scripts</li>
+<li>Read outputs</li>
+<li>Generate narrative</li>
+<li>Flag issues</li>
+<li>Recommend actions</li>
+</ul>
+</div>
+<div class="boundary-gate-inline">Human<br/>Review</div>
+<div class="boundary-zone-inline">
+<h4>Human Reviews</h4>
+<ul>
+<li>Confirms data accuracy</li>
+<li>Approves narrative</li>
+<li>Decides on action items</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-kpi-downloads" class="skill-panel" hidden="" id="kpi-downloads" role="tabpanel">
+<h3>Skill Files</h3>
+<p>Download all files for the Weekly KPI Report skill.</p>
+<ul class="download-list">
+<li><a download="" href="skills/weekly-kpi-report/SKILL.md">SKILL.md</a> <span class="file-label">— Main skill instructions and activation description</span></li>
+<li><a download="" href="skills/weekly-kpi-report/scripts/check_report_files.sh">scripts/check_report_files.sh</a> <span class="file-label">— Preflight validation script</span></li>
+<li><a download="" href="skills/weekly-kpi-report/scripts/summarize_kpis.py">scripts/summarize_kpis.py</a> <span class="file-label">— Data processing and variance detection</span></li>
+<li><a download="" href="skills/weekly-kpi-report/references/metric-definitions.md">references/metric-definitions.md</a> <span class="file-label">— KPI definitions and calculation methods</span></li>
+<li><a download="" href="skills/weekly-kpi-report/references/variance-rules.md">references/variance-rules.md</a> <span class="file-label">— Threshold-based flagging rules</span></li>
+<li><a download="" href="skills/weekly-kpi-report/assets/weekly-report-template.md">assets/weekly-report-template.md</a> <span class="file-label">— Report output template</span></li>
+<li><a download="" href="skills/weekly-kpi-report/examples/sales.csv">examples/sales.csv</a> <span class="file-label">— Sample sales data (7 days)</span></li>
+<li><a download="" href="skills/weekly-kpi-report/examples/operations.csv">examples/operations.csv</a> <span class="file-label">— Sample operations data (7 days)</span></li>
+<li><a download="" href="skills/weekly-kpi-report/examples/support.csv">examples/support.csv</a> <span class="file-label">— Sample support data (7 days)</span></li>
+</ul>
+<div class="callout">
+<h3>Getting Started</h3>
+<p>Copy the <code>skills/weekly-kpi-report/</code> folder into your agent's skills directory. The agent will automatically detect the skill and activate it when you ask to generate a weekly KPI report.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-customer-triage">
+<div class="container">
+<h2><span class="section-number">10</span> Customer Request Triage</h2>
+<p>This is an <strong>instructions-only skill</strong> with no scripts, no Python, and no shell commands. The AI agent handles all logic—routing, prioritization, confidence assessment, and response drafting—through structured instructions and reference documents alone.</p>
+<div class="skill-explorer">
+<div aria-label="Customer Request Triage skill explorer" class="skill-tabs" role="tablist">
+<button aria-selected="true" class="skill-tab" data-panel="triage-overview" id="tab-triage-overview" role="tab" tabindex="0">Overview</button>
+<button aria-selected="false" class="skill-tab" data-panel="triage-folder" id="tab-triage-folder" role="tab" tabindex="-1">Folder</button>
+<button aria-selected="false" class="skill-tab" data-panel="triage-skillmd" id="tab-triage-skillmd" role="tab" tabindex="-1">SKILL.md</button>
+<button aria-selected="false" class="skill-tab" data-panel="triage-references" id="tab-triage-references" role="tab" tabindex="-1">References</button>
+<button aria-selected="false" class="skill-tab" data-panel="triage-examples" id="tab-triage-examples" role="tab" tabindex="-1">Examples</button>
+<button aria-selected="false" class="skill-tab" data-panel="triage-workflow" id="tab-triage-workflow" role="tab" tabindex="-1">Workflow</button>
+<button aria-selected="false" class="skill-tab" data-panel="triage-downloads" id="tab-triage-downloads" role="tab" tabindex="-1">Downloads</button>
+</div>
+<div aria-labelledby="tab-triage-overview" class="skill-panel active" id="triage-overview" role="tabpanel">
+<h3>Business Purpose</h3>
+<p>Triages incoming customer requests by team, priority, and confidence level. Instead of letting requests pile up in a generic inbox, this skill classifies, routes, and drafts a response for every request consistently.</p>
+<h3>Who Uses It</h3>
+<ul>
+<li><strong>Support teams</strong> who handle high volumes of incoming customer messages</li>
+<li><strong>Account managers</strong> who want clients' requests to reach the right person quickly</li>
+<li><strong>Customer success teams</strong> who track request patterns and need consistent priority scoring</li>
+</ul>
+<h3>Input / Output</h3>
+<div class="side-by-side">
+<div class="side-card side-before">
+<h3>Input</h3>
+<p>A plain-text customer request, either pasted directly or provided as a file path. Handles emails, chat transcripts, support tickets, and free-form messages.</p>
+</div>
+<div class="side-card side-after">
+<h3>Output</h3>
+<p>A triage decision: team assignment with routing rationale, priority level with justification, confidence score (0–100%), suggested response using approved language, and escalation notes when confidence &lt; 80%.</p>
+</div>
+</div>
+<h3>Why a Skill Instead of a One-Time Prompt</h3>
+<ul>
+<li><strong>Consistent routing</strong>—every request evaluated against the same rules</li>
+<li><strong>Priority definitions</strong>—clear criteria prevent subjective urgency inflation</li>
+<li><strong>Approved language</strong>—only pre-approved phrases in customer responses</li>
+<li><strong>Confidence-based escalation</strong>—uncertain requests flagged for human review</li>
+</ul>
+<div class="callout">
+<h3>No Code Required</h3>
+<p>This skill has no scripts, no Python, and no shell commands. The entire workflow is driven by structured instructions in the SKILL.md file, supported by three reference documents.</p>
+</div>
+</div>
+<div aria-labelledby="tab-triage-folder" class="skill-panel" hidden="" id="triage-folder" role="tabpanel">
+<h3>Folder Structure</h3>
+<div class="skill-tree"><pre><code>skills/customer-request-triage/
+├── SKILL.md
+├── references/
+│   ├── routing-rules.md
+│   ├── priority-definitions.md
+│   └── approved-response-language.md
+└── examples/
+    ├── sample-requests.md
+    └── sample-triage-output.md</code></pre></div>
+<h3>Purpose of Each Folder</h3>
+<ul>
+<li><strong>SKILL.md</strong>—The main instruction file. The agent reads this first to understand the triage workflow and rules.</li>
+<li><strong>references/</strong>—Three reference files the agent consults during triage: routing rules, priority definitions, and approved response language.</li>
+<li><strong>examples/</strong>—Sample customer requests and a complete triage output for demonstration and testing.</li>
+</ul>
+<div class="callout">
+<h3>Why No Scripts or Assets Folder</h3>
+<p>This skill is pure-instruction. There are no deterministic steps that require code, and no template to fill—the agent composes its triage output from scratch each time, guided by the reference documents.</p>
+</div>
+</div>
+<div aria-labelledby="tab-triage-skillmd" class="skill-panel" hidden="" id="triage-skillmd" role="tabpanel">
+<h3>Rendered SKILL.md</h3>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Frontmatter (YAML)</h4></div>
+<div class="ref-card-body">
+<dl>
+<dt><strong>name:</strong> Customer Request Triage</dt>
+<dd>A descriptive name shown in skill listings and logs.</dd>
+<dt><strong>description:</strong> Triages incoming customer requests by team, priority, and confidence level.</dt>
+<dd>This is the activation description. It tells the agent <em>when</em> to use this skill: when a customer request needs classification, routing, or response drafting.</dd>
+</dl>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>When to Use / When Not to Use</h4></div>
+<div class="ref-card-body">
+<p><strong>Use this skill when:</strong> The user asks to triage a customer request, classify an incoming message, route a support ticket, prioritize customer inquiries, or draft a response.</p>
+<p><strong>Do not use this skill when:</strong> The request is not from a customer, the user wants bulk processing, or the user wants to modify the routing rules themselves.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Instructions (6 Steps)</h4></div>
+<div class="ref-card-body">
+<ol>
+<li>Read the customer request in full. Identify the customer name, core issue, product references, and urgency signals.</li>
+<li>Consult <code>references/routing-rules.md</code> to identify the target team.</li>
+<li>Consult <code>references/priority-definitions.md</code> to assign a priority level.</li>
+<li>Assess confidence (0–100%) based on clarity of routing and priority signals.</li>
+<li>If confidence &lt; 80%, flag the request for human review.</li>
+<li>Consult <code>references/approved-response-language.md</code> and compose a suggested response. Present the complete triage decision.</li>
+</ol>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Rules ("Do NOT" Rules)</h4></div>
+<div class="ref-card-body">
+<ul>
+<li><strong>Do NOT send any response to the customer.</strong> Only draft it. A human must approve and send it.</li>
+<li><strong>Do NOT use language outside the approved response list.</strong></li>
+<li><strong>Do NOT skip the confidence assessment.</strong> Even if routing seems obvious, state your score.</li>
+<li><strong>Do NOT escalate a request that clearly matches a routing rule.</strong></li>
+<li><strong>Do NOT invent customer information.</strong> Note gaps instead of guessing.</li>
+<li><strong>Do NOT downgrade priority to avoid escalation.</strong></li>
+</ul>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Confidence Thresholds</h4></div>
+<div class="ref-card-body">
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Confidence</th><th>Meaning</th><th>Action</th></tr>
+</thead>
+<tbody>
+<tr><td>80–100%</td><td>Clear routing and priority match</td><td>Present triage decision as-is</td></tr>
+<tr><td>50–79%</td><td>Likely match but some ambiguity</td><td>Flag for human review, still present recommendation</td></tr>
+<tr><td>0–49%</td><td>Multiple teams could own this</td><td>Escalate to human for full manual triage</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>Approval Boundaries</h4></div>
+<div class="ref-card-body">
+<p>The agent handles reading, routing, prioritizing, confidence assessment, and response drafting. A human confirms or overrides every triage decision before any response is sent. No customer-facing action is taken without human approval.</p>
+</div>
+</div>
+<details>
+<summary>View raw SKILL.md source</summary>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>customer-request-triage/SKILL.md</span>
+<button class="copy-btn" data-copy="triage-skill-raw">Copy</button>
+</div>
+<pre><code id="triage-skill-raw">---
+name: Customer Request Triage
+description: |
+  Triages incoming customer requests by team, priority, and confidence
+  level. Use when the user asks to triage, classify, route, or prioritize
+  a customer request. Accepts plain-text customer requests pasted
+  directly or provided as a file path.
+---
+
+## Instructions
+
+1. Read the customer request in full.
+2. Consult references/routing-rules.md to identify the target team.
+3. Consult references/priority-definitions.md to assign priority.
+4. Assess confidence (0-100%) based on clarity of routing.
+5. If confidence is below 80%, flag for human review.
+6. Consult references/approved-response-language.md and compose a
+   suggested response using only approved phrases.
+
+## Rules
+
+- Do NOT send any response to the customer.
+- Do NOT use language outside the approved response list.
+- Do NOT skip the confidence assessment.
+- Do NOT escalate a request that clearly matches a routing rule.
+- Do NOT invent customer information.
+- Do NOT downgrade priority to avoid escalation.
+
+## Confidence Thresholds
+
+- 80-100%: Clear match. Present as-is.
+- 50-79%: Likely match. Flag for review.
+- 0-49%: Ambiguous. Escalate for manual triage.
+
+## Approval Boundary
+
+A human reviews and confirms or overrides every triage decision
+before any response is sent to the customer.</code></pre>
+</div>
+</details>
+</div>
+<div aria-labelledby="tab-triage-references" class="skill-panel" hidden="" id="triage-references" role="tabpanel">
+<h3>Reference Files</h3>
+<p>Each reference file covers a single concern. Keeping them separate means routing can change without touching priority definitions, and approved language can be updated independently.</p>
+<div class="ref-card">
+<div class="ref-card-header"><h4>routing-rules.md</h4></div>
+<div class="ref-card-body">
+<p>The routing table maps keywords, topics, and customer types to the responsible team.</p>
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Team</th><th>Keywords / Topics</th><th>Customer Type</th><th>Escalation Path</th></tr>
+</thead>
+<tbody>
+<tr><td>Billing</td><td>invoice, charge, refund, payment, subscription</td><td>All</td><td>Billing Manager</td></tr>
+<tr><td>Technical Support</td><td>bug, error, crash, not working, API, integration</td><td>All</td><td>Senior Engineer</td></tr>
+<tr><td>Account Management</td><td>feature request, upgrade, contract, renewal</td><td>Enterprise / Premium</td><td>Account Director</td></tr>
+<tr><td>Product Feedback</td><td>feedback, suggestion, improvement, usability</td><td>All</td><td>Product Manager</td></tr>
+<tr><td>Security</td><td>security, vulnerability, breach, unauthorized access</td><td>All</td><td>Security Lead (immediate)</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Routing logic:</strong> If multiple teams match, assign the team with the most keyword matches and flag confidence below 80%. If no team matches, route to Account Management as catch-all and flag for review. Security keywords always route to Security as Critical.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>priority-definitions.md</h4></div>
+<div class="ref-card-body">
+<div class="csv-preview">
+<table>
+<thead>
+<tr><th>Priority</th><th>Criteria</th><th>Response Time</th><th>Escalation Trigger</th></tr>
+</thead>
+<tbody>
+<tr><td style="color: var(--color-danger); font-weight: 600;">Critical</td><td>Security breach, data loss, service outage</td><td>Within 1 hour</td><td>Immediate to Security Lead</td></tr>
+<tr><td style="color: var(--color-warning); font-weight: 600;">High</td><td>Feature broken, billing error with financial impact</td><td>Within 4 hours</td><td>Notify team lead in 30 min</td></tr>
+<tr><td>Medium</td><td>Feature partially working, workaround available</td><td>Within 1 business day</td><td>Escalate if no response in 2 days</td></tr>
+<tr><td>Low</td><td>Feature request, feedback, general question</td><td>Within 3 business days</td><td>Escalate if no response in 5 days</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rules:</strong> If multiple criteria apply, use the highest priority. Security requests are always Critical. VIP customers are elevated by one level.</p>
+</div>
+</div>
+<div class="ref-card">
+<div class="ref-card-header"><h4>approved-response-language.md</h4></div>
+<div class="ref-card-body">
+<h4>Approved Phrases</h4>
+<ul>
+<li>"We understand this is important to you and we are working to resolve it."</li>
+<li>"Your request has been routed to the appropriate team and they will follow up shortly."</li>
+<li>"We appreciate your patience while we look into this."</li>
+<li>"To help us resolve this faster, could you provide [specific detail]?"</li>
+<li>"We have escalated this to a specialist who will contact you within [timeframe]."</li>
+<li>"Thank you for bringing this to our attention."</li>
+</ul>
+<h4>Prohibited Phrases</h4>
+<ul>
+<li>"This is not our fault" — Never assign blame to the customer.</li>
+<li>"You should have..." — Never imply the customer made a mistake.</li>
+<li>"I don't know" — Use "Let me connect you with someone who can help."</li>
+<li>"That's not my department" — Use "I will route this to the right team."</li>
+<li>"Calm down" — Never tell a customer how to feel.</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-triage-examples" class="skill-panel" hidden="" id="triage-examples" role="tabpanel">
+<h3>Example 1: Sample Customer Requests</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>examples/sample-requests.md</span>
+<button class="copy-btn" data-copy="triage-ex-requests">Copy</button>
+</div>
+<pre><code id="triage-ex-requests"># Sample Customer Requests
+
+## Request 1: Billing Question
+From: jane.doe@example.com
+Subject: Double charged this month
+
+Hi, I noticed I was charged twice for my subscription this month.
+Can you please look into this and issue a refund for the duplicate
+charge?
+
+---
+
+## Request 2: Technical Bug Report
+From: dev-team@acmecorp.com
+Subject: API returning 500 errors since yesterday
+
+Our integration with your API started returning 500 Internal Server
+Errors at approximately 3:00 PM EST yesterday. This is blocking our
+production deployment. The endpoint is /api/v2/orders.
+
+---
+
+## Request 3: Security Concern
+From: security@bigbank.com
+Subject: Possible unauthorized access to customer data
+
+We have detected what appears to be unauthorized API access from an
+unknown IP address to our account. This may be a data breach. We need
+immediate assistance. Please escalate to your security team.
+
+---
+
+## Request 4: Feature Request
+From: m.chen@startup.io
+Subject: Need SSO integration for our team
+
+We are growing quickly and need single sign-on (SSO) support before
+our next quarterly review. We have 50 users who need access.
+
+---
+
+## Request 5: Service Complaint
+From: angry.user@gmail.com
+Subject: Terrible support experience - still waiting after 2 weeks
+
+I submitted a ticket two weeks ago about a broken export feature and
+have heard absolutely nothing back. This is unacceptable. If this is
+not resolved by end of week I am canceling my subscription.</code></pre>
+</div>
+<h3>Example 2: Complete Triage Output (Request 3: Security Concern)</h3>
+<div class="output-example">
+<h4>Request Summary</h4>
+<p>Customer (Big Bank) reports possible unauthorized API access from unknown IP addresses, suspected data breach requiring immediate security investigation.</p>
+<h4>Team Assignment</h4>
+<p><strong>Primary:</strong> Security — Keywords "unauthorized access," "data breach," and "security team" match the Security routing rule.</p>
+<p><strong>Secondary:</strong> Account Management — Enterprise account should be informed for client communication.</p>
+<h4>Priority Level</h4>
+<p><strong>Critical</strong> — "Possible data breach" matches Critical criteria: security breach and potential data loss. Response time target: within 1 hour.</p>
+<h4>Confidence Score</h4>
+<p><strong>95%</strong> — Routing to Security is unambiguous. Multiple security keywords present. 5% uncertainty from not knowing exact account tier.</p>
+<h4>Suggested Response</h4>
+<p>Thank you for bringing this to our attention. We understand this is important to you and we are working to resolve it. We have escalated this to a specialist who will contact you within 1 hour. Our security team is prioritizing your request and a team lead will be in touch shortly.</p>
+</div>
+</div>
+<div aria-labelledby="tab-triage-workflow" class="skill-panel" hidden="" id="triage-workflow" role="tabpanel">
+<h3>How the Skill Executes</h3>
+<p>The agent follows these ten steps. Steps 1–2 are trigger and input. Steps 3–5 are classification. Step 6 is the confidence gate. Steps 7–8 are response drafting. Steps 9–10 are the approval gate.</p>
+<div class="skill-flow">
+<span class="skill-flow-step">User provides request</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent reads request</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent applies routing rules</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent assigns priority</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent assesses confidence</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent flags low confidence</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent composes response</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Agent presents decision</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Human reviews</span>
+<span class="skill-flow-arrow">→</span>
+<span class="skill-flow-step">Human confirms or overrides</span>
+</div>
+<h3>Step-by-Step</h3>
+<ol class="workflow-steps">
+<li>User provides a customer request (pasted directly or as a file path).</li>
+<li>Agent reads the request in full, identifying customer name, core issue, product references, and urgency signals.</li>
+<li>Agent consults <code>references/routing-rules.md</code> to identify the target team.</li>
+<li>Agent consults <code>references/priority-definitions.md</code> to assign a priority level.</li>
+<li>Agent assesses confidence (0–100%) based on clarity of routing and priority signals.</li>
+<li>If confidence &lt; 80%, agent flags the request for human review.</li>
+<li>Agent consults <code>references/approved-response-language.md</code> for response phrasing.</li>
+<li>Agent composes a suggested response using only approved language.</li>
+<li>Agent presents the complete triage decision: team, priority, confidence, suggested response.</li>
+<li>Human reviews and confirms or overrides the decision, then approves or edits the response.</li>
+</ol>
+<h3>Approval Boundary</h3>
+<div class="approval-boundary-inline">
+<div class="boundary-zone-inline">
+<h4>AI Agent Handles</h4>
+<ul>
+<li>Read the customer request</li>
+<li>Apply routing rules</li>
+<li>Assign priority level</li>
+<li>Assess confidence score</li>
+<li>Compose suggested response</li>
+<li>Flag low-confidence cases</li>
+</ul>
+</div>
+<div class="boundary-gate-inline">Human<br/>Review</div>
+<div class="boundary-zone-inline">
+<h4>Human Confirms</h4>
+<ul>
+<li>Confirm team assignment</li>
+<li>Validate priority level</li>
+<li>Override triage decision if needed</li>
+<li>Approve and send response</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-triage-downloads" class="skill-panel" hidden="" id="triage-downloads" role="tabpanel">
+<h3>Skill Files</h3>
+<p>Download all files for the Customer Request Triage skill.</p>
+<ul class="download-list">
+<li><a download="" href="skills/customer-request-triage/SKILL.md">SKILL.md</a> <span class="file-label">— Main skill instructions and activation description</span></li>
+<li><a download="" href="skills/customer-request-triage/references/routing-rules.md">references/routing-rules.md</a> <span class="file-label">— Team routing table with keywords, topics, and escalation paths</span></li>
+<li><a download="" href="skills/customer-request-triage/references/priority-definitions.md">references/priority-definitions.md</a> <span class="file-label">— Priority levels with criteria, response targets, and escalation triggers</span></li>
+<li><a download="" href="skills/customer-request-triage/references/approved-response-language.md">references/approved-response-language.md</a> <span class="file-label">— Approved phrases, prohibited phrases, and escalation language</span></li>
+<li><a download="" href="skills/customer-request-triage/examples/sample-requests.md">examples/sample-requests.md</a> <span class="file-label">— Five sample customer requests showing variety of types</span></li>
+<li><a download="" href="skills/customer-request-triage/examples/sample-triage-output.md">examples/sample-triage-output.md</a> <span class="file-label">— Complete triage output for a security concern request</span></li>
+</ul>
+<div class="callout">
+<h3>Getting Started</h3>
+<p>Copy the <code>skills/customer-request-triage/</code> folder into your agent's skills directory. The agent will automatically detect the skill and activate it when you ask to triage, classify, route, or prioritize a customer request.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-choose-tools">
+<div class="container">
+<h2><span class="section-number">11</span> Choosing Between Tools</h2>
+<p>No single tool is best for everything. The right choice depends on what the task requires. Most real skills combine multiple tools.</p>
+<div class="tool-comparison">
+<div class="tool-card">
+<h3>AI Agent</h3>
+<ul>
+<li>Interpreting natural language input</li>
+<li>Generating narrative text and summaries</li>
+<li>Making judgment calls on ambiguous data</li>
+<li>Communicating with users in conversational language</li>
+<li>Classifying unstructured text</li>
+<li>Drafting emails, reports, and responses</li>
+</ul>
+</div>
+<div class="tool-card">
+<h3>Python Script</h3>
+<ul>
+<li>CSV, JSON, or XML parsing and validation</li>
+<li>Numerical calculations and statistics</li>
+<li>Data transformation and formatting</li>
+<li>API calls with authentication</li>
+<li>Date and currency manipulation</li>
+<li>Duplicate detection and deduplication</li>
+</ul>
+</div>
+<div class="tool-card">
+<h3>Shell Script</h3>
+<ul>
+<li>File existence and permission checks</li>
+<li>Directory creation and management</li>
+<li>Environment validation (is Python installed?)</li>
+<li>Running other scripts in sequence</li>
+<li>Simple string matching and logging</li>
+<li>Setting up pre-flight checks</li>
+</ul>
+</div>
+<div class="tool-card">
+<h3>Spreadsheets</h3>
+<ul>
+<li>Quick one-off data exploration</li>
+<li>Sharing results with non-technical stakeholders</li>
+<li>Simple pivot tables and charts</li>
+<li>Prototyping formulas before coding them</li>
+<li>Data entry by multiple team members</li>
+<li>When the audience prefers a familiar format</li>
+</ul>
+</div>
+</div>
+<div class="callout">
+<h3>Combine Tools</h3>
+<p>The most effective skills use multiple tools together. For example: a shell script verifies that input files exist, a Python script validates and transforms the data, and the AI agent interprets the results and communicates them to the user. Each tool does what it does best.</p>
+</div>
+</div>
+</section>
+<section class="section" id="section-safe-scripting">
+<div class="container">
+<h2><span class="section-number">12</span> Safe Scripting Standards</h2>
+<p>When your skill includes scripts that run automatically, safety is paramount. A script that silently overwrites a file or leaks credentials can do more damage than the manual process it replaced. Use this checklist to ensure every script meets minimum safety standards.</p>
+<div class="no-print">
+<div class="checklist">
+<div class="checklist-item">
+<input class="checklist-cb" id="check-1" type="checkbox"/>
+<label for="check-1">Never delete or overwrite existing files without explicit confirmation</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-2" type="checkbox"/>
+<label for="check-2">Write output to a separate folder, never to the input directory</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-3" type="checkbox"/>
+<label for="check-3">Validate all file paths before using them; reject relative paths that could escape the working directory</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-4" type="checkbox"/>
+<label for="check-4">Check whether output files already exist before writing; append a timestamp or number to avoid collisions</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-5" type="checkbox"/>
+<label for="check-5">Support a dry-run mode that shows what would happen without actually doing it</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-6" type="checkbox"/>
+<label for="check-6">Quote all variables in shell scripts to prevent word splitting and glob expansion</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-7" type="checkbox"/>
+<label for="check-7">Never embed credentials, API keys, or passwords in scripts; use environment variables or a secrets manager</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-8" type="checkbox"/>
+<label for="check-8">Never log confidential information such as customer data, financial figures, or personal identifiers</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-9" type="checkbox"/>
+<label for="check-9">Use only standard-library or widely available dependencies; minimize external packages</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-10" type="checkbox"/>
+<label for="check-10">Display planned actions to the user before executing them</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-11" type="checkbox"/>
+<label for="check-11">Require explicit user confirmation for any action that modifies external systems</label>
+</div>
+<div class="checklist-item">
+<input class="checklist-cb" id="check-12" type="checkbox"/>
+<label for="check-12">Use synthetic or anonymized test data during development; never use real customer data in tests</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-governance">
+<div class="container">
+<h2><span class="section-number">13</span> Business Controls and Governance</h2>
+<p>Automation without governance is speed without steering. As you deploy skills that affect real business data and customer interactions, you need controls to ensure correctness, compliance, and accountability.</p>
+<div class="governance-topics">
+<div class="governance-item">
+<h3>Data Privacy</h3>
+<p>Understand what data the skill touches. Personal data, financial data, and health data each have different regulatory requirements. Ensure the skill complies with relevant regulations (GDPR, HIPAA, SOC 2).</p>
+</div>
+<div class="governance-item">
+<h3>Confidential Information</h3>
+<p>Skills should not expose confidential business information in logs, error messages, or output files that could be seen by unauthorized parties.</p>
+</div>
+<div class="governance-item">
+<h3>Personally Identifiable Information (PII)</h3>
+<p>If the skill processes PII, ensure it is handled according to your organization's data handling policies. Minimize the PII that appears in logs and intermediate files.</p>
+</div>
+<div class="governance-item">
+<h3>Access Controls</h3>
+<p>Limit who can run, modify, and approve skills. Not everyone should have write access to production skills.</p>
+</div>
+<div class="governance-item">
+<h3>Approval Thresholds</h3>
+<p>Define clear thresholds for when human approval is required. For example, any expense over a dollar amount or any customer-facing communication must be approved.</p>
+</div>
+<div class="governance-item">
+<h3>Segregation of Duties</h3>
+<p>The person who writes the skill should not be the only person who can approve its use in production. Separate development from approval.</p>
+</div>
+<div class="governance-item">
+<h3>Audit Trails</h3>
+<p>Log who ran the skill, when, what inputs were used, what decisions were made, and what outputs were produced. These logs are essential for troubleshooting and compliance.</p>
+</div>
+<div class="governance-item">
+<h3>Record Retention</h3>
+<p>Define how long inputs, outputs, and logs are retained. Automate cleanup to prevent unbounded storage growth.</p>
+</div>
+<div class="governance-item">
+<h3>Version Control</h3>
+<p>Store all skill files in a version control system. Every change should be committed with a message explaining what changed and why.</p>
+</div>
+<div class="governance-item">
+<h3>Change Management</h3>
+<p>Follow your organization's change management process for skills that affect production systems. Document changes, get approvals, and schedule deployments.</p>
+</div>
+<div class="governance-item">
+<h3>Script Review</h3>
+<p>Review scripts before they are added to a skill. Check for safety issues, performance problems, and compliance with the safe scripting standards.</p>
+</div>
+<div class="governance-item">
+<h3>Skill Ownership</h3>
+<p>Every skill should have a designated owner responsible for maintenance, updates, and retirement. Unowned skills become technical debt.</p>
+</div>
+</div>
+<div class="danger-warning">
+<h3>Warning</h3>
+<p>An efficient incorrect process can create larger problems faster. Speed without accuracy multiplies the impact of errors. Always validate that a skill produces correct results before removing human oversight.</p>
+</div>
+</div>
+</section>
+<section class="section" id="section-testing">
+<div class="container">
+<h2><span class="section-number">14</span> Testing a Skill</h2>
+<p>Testing ensures that a skill produces the expected results under various conditions. A skill that has not been tested is a skill that might fail silently in production.</p>
+<h3>Test Folder Structure</h3>
+<div class="folder-tree">
+<pre><code>tests/
+├── test_validation.py       ← Unit tests for validation logic
+├── test_edge_cases.py       ← Boundary and error conditions
+├── test_integration.py      ← End-to-end skill execution
+├── fixtures/                ← Test data files
+│   ├── valid_report.csv
+│   ├── missing_columns.csv
+│   ├── empty_file.csv
+│   └── duplicate_rows.csv
+└── expected/                ← Expected outputs for comparison
+    ├── valid_exceptions.csv
+    └── valid_summary.md</code></pre>
+</div>
+<h3>Five Testing Categories</h3>
+<div class="testing-categories">
+<div class="testing-category">
+<h4>1. Unit Tests</h4>
+<p>Test individual functions in isolation. Verify that parse_date handles all formats, that detect_duplicates catches duplicates, and that parse_amount rejects non-numeric input.</p>
+</div>
+<div class="testing-category">
+<h4>2. Edge Case Tests</h4>
+<p>Test boundary conditions: empty files, files with one row, files with thousands of rows, maximum and minimum numeric values, special characters in text fields.</p>
+</div>
+<div class="testing-category">
+<h4>3. Integration Tests</h4>
+<p>Test the full skill from trigger to output. Provide sample input, run the skill, and verify that all outputs match expected results.</p>
+</div>
+<div class="testing-category">
+<h4>4. Regression Tests</h4>
+<p>When a bug is found and fixed, write a test that reproduces the bug. This ensures the same problem never returns.</p>
+</div>
+<div class="testing-category">
+<h4>5. Acceptance Tests</h4>
+<p>Verify the skill from the user's perspective. Does the output meet the business requirements? Is the format correct? Are the calculations accurate?</p>
+</div>
+</div>
+<h3>Python unittest Example</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>test_validation.py</span>
+<button class="copy-btn" data-copy="test-validation-code">Copy</button>
+</div>
+<pre><code id="test-validation-code">import unittest
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+
+from validate_expenses import parse_date, parse_amount, detect_duplicates, check_required_columns
+
+
+class TestParseDate(unittest.TestCase):
+    def test_valid_yyyy_mm_dd(self):
+        valid, result = parse_date("2026-07-07")
+        self.assertTrue(valid)
+        self.assertEqual(result, "2026-07-07")
+
+    def test_valid_mm_dd_yyyy(self):
+        valid, result = parse_date("07/07/2026")
+        self.assertTrue(valid)
+        self.assertEqual(result, "07/07/2026")
+
+    def test_invalid_date(self):
+        valid, result = parse_date("not-a-date")
+        self.assertFalse(valid)
+
+    def test_empty_string(self):
+        valid, result = parse_date("")
+        self.assertFalse(valid)
+
+
+class TestParseAmount(unittest.TestCase):
+    def test_valid_amount(self):
+        valid, amount = parse_amount("123.45")
+        self.assertTrue(valid)
+        self.assertAlmostEqual(amount, 123.45)
+
+    def test_dollar_sign(self):
+        valid, amount = parse_amount("$1,234.56")
+        self.assertTrue(valid)
+        self.assertAlmostEqual(amount, 1234.56)
+
+    def test_invalid_amount(self):
+        valid, amount = parse_amount("abc")
+        self.assertFalse(valid)
+
+
+class TestDetectDuplicates(unittest.TestCase):
+    def test_no_duplicates(self):
+        rows = [
+            {"date": "2026-07-01", "description": "Lunch", "amount": "25.00"},
+            {"date": "2026-07-02", "description": "Dinner", "amount": "40.00"},
+        ]
+        dupes = detect_duplicates(rows, ["date", "description", "amount"])
+        self.assertEqual(dupes, [])
+
+    def test_one_duplicate(self):
+        rows = [
+            {"date": "2026-07-01", "description": "Lunch", "amount": "25.00"},
+            {"date": "2026-07-01", "description": "Lunch", "amount": "25.00"},
+        ]
+        dupes = detect_duplicates(rows, ["date", "description", "amount"])
+        self.assertEqual(dupes, [1])
+
+
+class TestCheckRequiredColumns(unittest.TestCase):
+    def test_all_present(self):
+        missing = check_required_columns(["date", "description", "amount", "category"])
+        self.assertEqual(missing, [])
+
+    def test_one_missing(self):
+        missing = check_required_columns(["date", "description", "amount"])
+        self.assertEqual(missing, ["category"])
+
+
+if __name__ == "__main__":
+    unittest.main()</code></pre>
+</div>
+<h3>Interactive Test Case Builder</h3>
+<div class="no-print">
+<div class="test-builder">
+<div class="test-builder-form">
+<div class="form-group">
+<label for="testName">Test name</label>
+<input id="testName" placeholder="e.g., valid CSV passes validation" type="text"/>
+</div>
+<div class="form-group">
+<label for="testInput">Input condition</label>
+<input id="testInput" placeholder="e.g., CSV with all required columns and valid data" type="text"/>
+</div>
+<div class="form-group">
+<label for="testExpected">Expected behavior</label>
+<input id="testExpected" placeholder="e.g., Exit code 0, no exceptions written" type="text"/>
+</div>
+<div class="form-group">
+<label for="testCriterion">Acceptance criterion</label>
+<input id="testCriterion" placeholder="e.g., All rows pass validation" type="text"/>
+</div>
+<button class="btn btn-primary" id="addTestCase">Add Test Case</button>
+</div>
+<table class="test-cases-table" id="testCasesTable">
+<thead>
+<tr>
+<th>#</th>
+<th>Test Name</th>
+<th>Input Condition</th>
+<th>Expected Behavior</th>
+<th>Acceptance Criterion</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody id="testCasesBody">
+</tbody>
+</table>
+<button class="btn btn-secondary" id="downloadCSV">Download as CSV</button>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-debugging">
+<div class="container">
+<h2><span class="section-number">15</span> Debugging Guide</h2>
+<p>When a skill does not work as expected, systematic debugging saves time. Below are the ten most common issues and how to resolve each one.</p>
+<div class="accordion" id="debuggingAccordion">
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Skill does not activate when expected</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The activation description is too vague or does not match the user's phrasing. The agent cannot determine that this skill is the right one.</dd>
+<dt>Diagnostic step</dt>
+<dd>Compare the user's exact phrasing with the description. Check whether other skills have overlapping descriptions that might match first.</dd>
+<dt>Corrective action</dt>
+<dd>Add the user's actual phrasing to the description. Remove or narrow overlapping descriptions in other skills.</dd>
+<dt>Example</dt>
+<dd>User says "run the Monday report" but the description only mentions "weekly report." Add "Monday report" as a trigger phrase.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Wrong skill activates</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>Two or more skills have overlapping activation descriptions. The agent picks the one that matches first.</dd>
+<dt>Diagnostic step</dt>
+<dd>List all skill descriptions and identify which ones could match the user's request. Check the agent's selection logic.</dd>
+<dt>Corrective action</dt>
+<dd>Make each skill's description more specific. Add negative conditions ("Do not use for expense reports") where overlap exists.</dd>
+<dt>Example</dt>
+<dd>Both "Weekly Report" and "Monthly Report" skills trigger on "generate report." Add time-specific phrases to each.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Instructions are too broad</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The SKILL.md instructions describe what to do in general terms but do not specify exact steps, file names, or formats.</dd>
+<dt>Diagnostic step</dt>
+<dd>Ask: "Could a new employee follow these instructions without asking questions?" If not, they are too broad.</dd>
+<dt>Corrective action</dt>
+<dd>Add specific file names, column names, output formats, and example values. Replace vague verbs with concrete actions.</dd>
+<dt>Example</dt>
+<dd>"Process the data" becomes "Read input.csv, validate that columns date, amount, and category exist, and write valid rows to output/valid.csv."</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Agent asks unnecessary questions</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The instructions do not specify defaults or the skill does not provide enough context for the agent to proceed autonomously.</dd>
+<dt>Diagnostic step</dt>
+<dd>Review the questions the agent asks. Determine whether the answers could be anticipated and documented in the skill.</dd>
+<dt>Corrective action</dt>
+<dd>Add default values, specify the expected input format, and document what to do when optional information is missing.</dd>
+<dt>Example</dt>
+<dd>Agent asks "What threshold should I use?" Add "Use $1,000 as the default threshold unless the user specifies otherwise."</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Script cannot find file</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The script expects a file at a specific path, but the working directory is different from what the script assumes. Or the file has a different name than expected.</dd>
+<dt>Diagnostic step</dt>
+<dd>Check the working directory when the script runs. Print the full path the script is trying to open. Verify the file exists at that exact path.</dd>
+<dt>Corrective action</dt>
+<dd>Use absolute paths or resolve relative paths from a known base directory. Add a file-existence check at the start of the script with a clear error message.</dd>
+<dt>Example</dt>
+<dd>Script assumes sales.csv is in the current directory, but the agent runs it from the skill folder. Use os.path.join with the working directory.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">CSV columns differ from expected</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The input CSV has different column names, different column order, or extra columns that the script does not handle.</dd>
+<dt>Diagnostic step</dt>
+<dd>Print the actual headers from the CSV and compare them against what the script expects. Check for case differences, trailing spaces, or encoding issues.</dd>
+<dt>Corrective action</dt>
+<dd>Normalize column names in the script (lowercase, strip whitespace, replace spaces with underscores). Add a column-name validation step with a clear error message listing actual vs. expected columns.</dd>
+<dt>Example</dt>
+<dd>CSV has "Amount ($)" but script expects "amount." Normalize by stripping special characters and lowercasing.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Dates are misinterpreted</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>Different date formats in the input (07/01/2026 vs. 2026-07-01 vs. July 1, 2026) and the script only handles one format.</dd>
+<dt>Diagnostic step</dt>
+<dd>Print the raw date values from the input. Identify which formats appear. Check which format the script attempts to parse.</dd>
+<dt>Corrective action</dt>
+<dd>Support multiple date formats by trying each one in sequence. Add the date format to the skill's documentation so users know what is accepted.</dd>
+<dt>Example</dt>
+<dd>parse_date tries YYYY-MM-DD first, then MM/DD/YYYY, then MM-DD-YYYY. Accept whichever matches.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Outputs are inconsistent between runs</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The skill relies on AI interpretation for steps that should be deterministic, or the input data changes subtly between runs.</dd>
+<dt>Diagnostic step</dt>
+<dd>Run the skill twice with identical inputs. Compare outputs line by line. Identify which parts differ and why.</dd>
+<dt>Corrective action</dt>
+<dd>Move any step that produces different results each time from the AI to a script. Use scripts for all calculations, formatting, and data transformations.</dd>
+<dt>Example</dt>
+<dd>AI generates a summary table but uses different column ordering each time. Replace with a Python script that produces identical output.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">Unsupported assumptions about data</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The skill assumes the input data has a certain structure, range, or quality that does not match reality.</dd>
+<dt>Diagnostic step</dt>
+<dd>Examine the actual input data. Compare it against the assumptions documented in the skill. Identify every mismatch.</dd>
+<dt>Corrective action</dt>
+<dd>Validate assumptions at the start of the skill. If an assumption fails, report a clear error instead of producing wrong results.</dd>
+<dt>Example</dt>
+<dd>Skill assumes amounts are always positive, but the CSV contains refunds as negative numbers. Add a check for negative amounts and flag them as exceptions.</dd>
+</dl>
+</div>
+</div>
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-trigger">External actions fail silently</button>
+<div class="accordion-panel" hidden="" role="region">
+<dl>
+<dt>Likely cause</dt>
+<dd>The skill sends an email, writes to a database, or calls an API, but does not check or report the result of the action.</dd>
+<dt>Diagnostic step</dt>
+<dd>Add logging before and after every external action. Check return codes, HTTP status codes, and error messages.</dd>
+<dt>Corrective action</dt>
+<dd>Wrap every external action in error handling. Log success and failure. Report failures to the user immediately instead of continuing silently.</dd>
+<dt>Example</dt>
+<dd>Email sending function returns a status code but the skill ignores it. Add: if status != 200, log the error and notify the user.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="section-measurement">
+<div class="container">
+<h2><span class="section-number">16</span> Measuring Business Impact</h2>
+<p>You cannot improve what you do not measure. Track these metrics before and after deploying a skill to demonstrate its value and identify areas for further improvement.</p>
+<h3>Savings Calculator</h3>
+<div class="calculator">
+<div class="calculator-inputs">
+<div class="calc-group">
+<label for="calcMinutesBefore">Minutes per run before</label>
+<input id="calcMinutesBefore" min="0" type="number" value="120"/>
+</div>
+<div class="calc-group">
+<label for="calcMinutesAfter">Minutes per run after</label>
+<input id="calcMinutesAfter" min="0" type="number" value="30"/>
+</div>
+<div class="calc-group">
+<label for="calcRunsPerMonth">Runs per month</label>
+<input id="calcRunsPerMonth" min="1" type="number" value="4"/>
+</div>
+<div class="calc-group">
+<label for="calcHourlyCost">Loaded hourly cost ($)</label>
+<input id="calcHourlyCost" min="0" step="0.01" type="number" value="75"/>
+</div>
+<div class="calc-group">
+<label for="calcErrorsBefore">Monthly errors before</label>
+<input id="calcErrorsBefore" min="0" type="number" value="12"/>
+</div>
+<div class="calc-group">
+<label for="calcErrorsAfter">Monthly errors after</label>
+<input id="calcErrorsAfter" min="0" type="number" value="2"/>
+</div>
+<button class="btn btn-primary" id="calcCalculate">Calculate Savings</button>
+</div>
+<div class="calculator-results" id="calcResults">
+<div class="result-card" id="resultHours">
+<h4>Hours saved per month</h4>
+<p class="result-value" id="resultHoursValue">--</p>
+</div>
+<div class="result-card" id="resultValue">
+<h4>Estimated annual value</h4>
+<p class="result-value" id="resultValueValue">--</p>
+</div>
+<div class="result-card" id="resultErrors">
+<h4>Error reduction</h4>
+<p class="result-value" id="resultErrorsValue">--</p>
+</div>
+</div>
+</div>
+<div class="callout">
+<h3>Important Note</h3>
+<p>Estimated savings do not equal cash savings. Time freed up is real, but the financial value depends on what the freed-up time is used for. Use these numbers to justify investment, not to book actual cost reductions.</p>
+</div>
+</div>
+</section>
+<section class="section" id="section-deployment">
+<div class="container">
+<h2><span class="section-number">17</span> Deployment and Maintenance</h2>
+<p>Deploying a skill is not a one-time event. Skills need ongoing maintenance, versioning, and ownership to remain reliable over time.</p>
+<div class="deployment-topics">
+<div class="deployment-item">
+<h3>Personal vs. Shared</h3>
+<p>Start with a personal skill for your own use. Once it is reliable and other people need it, promote it to a shared location with proper version control and documentation.</p>
+</div>
+<div class="deployment-item">
+<h3>Naming Conventions</h3>
+<p>Use clear, descriptive names. Avoid abbreviations. The folder name should match the skill's purpose. Example: weekly-kpi-report, not wkrpt.</p>
+</div>
+<div class="deployment-item">
+<h3>Version Control</h3>
+<p>Store all skill files in a Git repository. Every change gets a commit. Tags mark releases. Branches isolate experiments from production.</p>
+</div>
+<div class="deployment-item">
+<h3>Changelogs</h3>
+<p>Maintain a CHANGELOG.md in each skill folder. Document what changed, when, and why. This helps users understand whether they need to update their workflows.</p>
+</div>
+<div class="deployment-item">
+<h3>Ownership</h3>
+<p>Assign an owner to every shared skill. The owner reviews changes, handles issues, and decides when the skill is retired.</p>
+</div>
+<div class="deployment-item">
+<h3>Review Frequency</h3>
+<p>Schedule regular reviews (quarterly is common). Check whether the skill is still used, still correct, and still follows current standards.</p>
+</div>
+<div class="deployment-item">
+<h3>Sample Data</h3>
+<p>Keep sample data in the examples folder. Update it when the input format changes. Use it for demonstrations and testing.</p>
+</div>
+<div class="deployment-item">
+<h3>Script Change Approval</h3>
+<p>Changes to scripts that run in production should be reviewed by at least one person who did not write the change. This catches bugs and safety issues.</p>
+</div>
+<div class="deployment-item">
+<h3>Retirement</h3>
+<p>When a skill is no longer needed, document why it is being retired, move it to an archive folder, and remove it from active use. Do not delete it without a record.</p>
+</div>
+</div>
+<h3>Versioning Example</h3>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>CHANGELOG.md</span>
+<button class="copy-btn" data-copy="changelog-example">Copy</button>
+</div>
+<pre><code id="changelog-example"># Changelog
+
+## v1.3.0 - 2026-07-07
+- Added variance flagging for KPIs exceeding 10% change
+- Added Markdown summary output alongside CSV
+
+## v1.2.0 - 2026-06-15
+- Added support for the support.csv department file
+- Improved column name normalization
+
+## v1.1.0 - 2026-05-20
+- Added pre-flight shell script for file validation
+- Fixed date parsing for MM-DD-YYYY format
+
+## v1.0.0 - 2026-04-01
+- Initial release
+- Combines sales.csv and operations.csv
+- Produces detailed CSV output</code></pre>
+</div>
+</div>
+</section>
+<section class="section" id="section-template">
+<div class="container">
+<h2><span class="section-number">18</span> Reusable Skill Template</h2>
+<p>Use this template as your starting point for any new skill. Copy it, fill in the sections, and adapt it to your specific process.</p>
+<div class="code-block-wrapper">
+<div class="code-block-header">
+<span>SKILL.md template</span>
+<button class="copy-btn" data-copy="skill-template-code">Copy</button>
+</div>
+<pre><code id="skill-template-code">---
+name: Skill Name
+description: |
+  One sentence describing what this skill produces. Use when the user
+  asks to [specific trigger phrases]. Requires [input files or data].
+  Produces [expected output].
+---
+
+## Overview
+
+Describe the business problem this skill solves and why it matters.
+Include the measurable impact if known.
+
+## Prerequisites
+
+- List any files, tools, or access required before running this skill
+- Example: Python 3.8+, sales.csv in the working directory
+
+## Instructions
+
+1. Step one: Be specific and actionable.
+2. Step two: Reference scripts by file name when deterministic work is needed.
+3. Step three: Describe what the agent should present to the user.
+4. Step four: Describe the approval gate if one is needed.
+5. Step five: Describe the final output and where it should be written.
+
+## Rules
+
+- Do NOT [specific prohibition]
+- Do NOT [specific prohibition]
+- Always [required behavior]
+- If [edge condition], then [how to handle it]
+
+## Scripts
+
+- scripts/validate.py: [What it does and when the agent should call it]
+- scripts/check_files.sh: [What it checks and what the exit codes mean]
+
+## Examples
+
+- examples/sample_input.csv: A realistic input file
+- examples/sample_output.csv: The expected output for the sample input
+- examples/sample_output.md: The expected summary for the sample input
+
+## Testing
+
+Run tests with: python -m pytest tests/
+
+Expected test results should include:
+- [Test scenario 1 and expected outcome]
+- [Test scenario 2 and expected outcome]
+
+## Version History
+
+- v1.0.0: Initial release
+
+## Owner
+
+Name: [Skill owner name]
+Team: [Team name]
+Last reviewed: [Date]</code></pre>
+</div>
+<div class="no-print">
+<button class="btn btn-primary" id="downloadTemplate">Download Template</button>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container">
+<p>© 2026 The SKILL.md Pattern for Business Efficiency. All rights reserved.</p>
+</div>
+</footer>
+<button aria-label="Back to top" class="back-to-top no-print" id="backToTop" title="Back to top">↑</button>
+</body>
+</html>

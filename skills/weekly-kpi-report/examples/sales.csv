@@ -1,0 +1,9 @@
+region,product,revenue,units_sold,returns
+North,Widget A,12500,150,3
+North,Widget B,8750,95,1
+South,Widget A,11200,135,2
+South,Widget B,9800,110,4
+East,Widget A,14300,175,5
+East,Widget B,7600,88,2
+West,Widget A,10900,132,1
+West,Widget B,11400,128,3

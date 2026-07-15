@@ -1,0 +1,19 @@
+Weekly Operations Standup - July 7, 2026
+Attendees: Sarah, James, Priya, Tom
+
+Sarah reported that the new vendor integration is on track for
+July 20 launch. James needs to finish the API testing by Wednesday.
+Priya will prepare the customer communication draft by Friday.
+
+Tom mentioned the support ticket volume is up 15% this month. James
+will investigate whether it is related to the recent release. No
+deadline was given for this.
+
+Decision: We will delay the billing system upgrade to August to
+avoid conflicting with the vendor integration launch.
+
+Open question: Should we hire a contractor for the documentation
+project? Sarah will check the budget.
+
+Action item for Sarah: Send the vendor integration status update to
+the executive team by end of day today.

@@ -1,0 +1,21 @@
+Review summary
+
+Corrections made
+- Repaired the broken “View Practical Examples” hero link.
+- Changed the logo link to target the page header instead of an empty fragment.
+- Added an accessible name to the mobile navigation button.
+- Added a search-engine/page-description meta tag.
+- Restored the three runnable example files that were displayed in the page but absent from the archive.
+- Added README.txt with local-use and validation instructions.
+- Removed macOS metadata from the corrected package.
+
+Validation completed
+- JavaScript syntax: passed (`node --check script.js`).
+- Python syntax: passed for both Python examples.
+- Shell syntax: passed for the shell example.
+- Internal fragment references: no missing targets.
+- HTML IDs: no duplicates.
+
+Limitations
+- A full automated browser interaction test was not completed because the container’s headless Chromium process did not terminate normally. Static checks and source-level interaction checks passed.
+- The example scripts are educational and should be tested with synthetic data before use on business records.

@@ -1,0 +1,6 @@
+ticket_type,opened,closed,avg_response_minutes,customer_satisfaction
+Bug report,85,78,22,82
+Feature request,42,12,45,88
+Account issue,63,58,15,91
+Billing inquiry,38,35,18,86
+General question,95,90,12,93
