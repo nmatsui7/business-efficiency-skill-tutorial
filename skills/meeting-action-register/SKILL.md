@@ -40,6 +40,13 @@ Do not use this skill for:
 - Do NOT change the meaning of any action item. Preserve the original intent even if the wording is informal.
 - If the notes are too vague to extract a specific action, skip it and note that it was unclear.
 
+## Reference files
+
+For detailed extraction guidance, consult these files:
+
+- `references/action-item-rules.md` — Expanded rules for owner identification, deadline interpretation, and priority assignment
+- `assets/action-register-template.md` — Blank template for output format
+
 ## Output format
 
 Present the results as:
